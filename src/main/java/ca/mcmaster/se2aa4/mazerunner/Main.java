@@ -13,4 +13,6 @@ public interface Main {
             logger.error("/!\\ An error has occured /!\\");
         }
     }    
-} 
+}
+
+// Main is fine, we don't need to change it.
