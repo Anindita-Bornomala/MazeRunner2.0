@@ -14,12 +14,13 @@ public class MazeData {
     public int sumCol;
 
     public MazeData(String filePath) {
-        this.maze = storeMazeData(this.maze, filePath);
+        this.maze = storeMazeData(filePath);
         this.sumRow = maze.length;
         this.sumCol = maze[0].length;
     }
 
-    private char[][] storeMazeData(char[][] mazeData, String filePath) {
+    private char[][] storeMazeData(String filePath) {
+        char [][] mazeData = null;
         try{
             int sumRows = 0;
             int sumCols = 0;
@@ -74,3 +75,5 @@ public class MazeData {
         }
     }
 }
+
+// MazeData's gonna get a massive rehaul, I don't think we need to print the mazeData. Also this will be the MazeGraph class.
