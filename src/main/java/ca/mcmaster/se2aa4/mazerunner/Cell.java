@@ -1,12 +1,12 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public enum Cell {
-    OPEN(' '),
-    WALL('#');
+    OPEN(0),
+    WALL(1);
 
-    private final char type;
+    private final Integer type;
 
-    Cell(char type) {
+    Cell(Integer type) {
         this.type = type;
     }
 

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MazeGraph {
+public class Maze {
     private static final Logger logger = LogManager.getLogger();
     private ArrayList<ArrayList<Integer>> graph; // 2d Integer arraylist where path = 0, wall = 1
 
     // private Map<Coordinate, Cell> graph; // our graph system
 
-    public MazeGraph(String filePath) {
+    public Maze(String filePath) {
         graph = new ArrayList<>();
         storeMaze(filePath);
     }
