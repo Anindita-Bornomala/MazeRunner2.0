@@ -15,7 +15,7 @@ public class MazeRunner {
             logger.info("**** Reading the string: " + config.getPathGuess());
             logger.info("**** Reading the string: " + config.getMethod());
             
-            MazeGraph testMaze = new MazeGraph(config.getInputFile()); // TESTING MAZEGRAPH
+            Maze testMaze = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
             testMaze.printMaze(); // TESTING MAZEGRAPH
 
             MazeData maze1 = new MazeData(config.getInputFile());
