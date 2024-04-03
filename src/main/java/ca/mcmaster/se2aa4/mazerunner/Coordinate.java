@@ -9,21 +9,13 @@ public class Coordinate {
         this.y = y;
     }
 
-    public Integer getX() {
-        return this.x;
-    }
+    public Integer getX() { return this.x; }
 
-    public Integer getY() {
-        return this.y;
-    }
+    public Integer getY() { return this.y; }
 
-    public void updateX(Integer x) {
-        this.x = x;
-    }
+    public void updateX(Integer x) { this.x = x; }
 
-    public void updateY(Integer y) {
-        this.y = y;
-    }
+    public void updateY(Integer y) { this.y = y; }
 
     public Coordinate moveForward(Direction direction) {
         Integer newX = this.x;

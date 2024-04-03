@@ -19,10 +19,9 @@ public class Maze {
         storeMaze(filePath);
     }
 
-    private ArrayList<ArrayList<Integer>> getData() {
+    public ArrayList<ArrayList<Integer>> getData() {
         return this.graph;
     }
-
 
     private void storeMaze(String filePath) {
         try {

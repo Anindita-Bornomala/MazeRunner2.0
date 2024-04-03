@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class Graph {
     private Maze maze;
+    private ArrayList<ArrayList<Integer>> graph;
 
-    public Graph(Maze maze) {
-        this.maze = maze;
+    public Graph(String filePath) {
+        this.maze = new Maze(filePath);
+        this.graph = maze.getData();
     }
 
     public void printMaze() {
@@ -26,7 +28,7 @@ public class Graph {
     public Coordinate startCoord(Maze maze) {
         Coordinate start = new Coordinate(0,0);
 
-        for (ArrayList<Integer> row : maze.getData()) {
+        for (ArrayList<Integer> row : this.graph) {
             for (Integer cell : row) {
                 if (cell == 1) {
                     System.out.print("WALL "); // wall
@@ -41,7 +43,7 @@ public class Graph {
     }
 
     public Integer[] pathStart(MazeData maze) { // get start coordinates
-        this.maze = maze;
+        // this.maze = maze;
         Integer[] startCoord = {0, 0};
         for (int row = 0; row < maze.getSumRow()-1; row++) {
             if ((maze.getSumCol() > 0) && ((maze.getStartCol(row)) != '#')) {
