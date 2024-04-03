@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine.Help.TextTable.Cell;
 
 public class MazeTest {
-    private Map<Coordinate, Cell> graph; // our graph system
+    // private Map<Coordinate, Cell> graph; // our graph system
     private Coordinate currentStep;
     private MazeData maze; // delete later
 

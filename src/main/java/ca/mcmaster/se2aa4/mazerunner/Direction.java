@@ -1,18 +1,19 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public enum Direction {
-    NORTH('N'),
-    SOUTH('S'),
-    EAST('E'),
-    WEST('W');
+    NORTH,
+    SOUTH,
+    EAST,
+    WEST;
 
-    private final char dir;
+    // private final char dir;
 
-    Direction(char dir) { this.dir = dir; } // constructor
+    // Direction(char dir) { this.dir = dir; } // constructor
 
-    @Override
-    public String toString() { return "" + dir; }
+    // @Override
+    // public String toString() { return "" + dir; }
 
+    /* 
     public static Direction toDirection(String dir) {
         switch (dir.toUpperCase()) {
             case "N":
@@ -27,4 +28,5 @@ public enum Direction {
                 throw new IllegalArgumentException("Invalid direction: " + dir);
         }
     }
+    */
 }

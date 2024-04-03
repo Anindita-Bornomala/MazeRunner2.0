@@ -7,6 +7,7 @@ public class PathFinder {
         this.maze = maze;
     }
 
+    // CONVERTED
     public Integer[] pathStart(MazeData maze) { // get start coordinates
         this.maze = maze;
         Integer[] startCoord = {0, 0};
@@ -19,6 +20,7 @@ public class PathFinder {
         return startCoord;
     } 
 
+    // CONVERTED
     public Integer[] pathEnd(MazeData maze) { // get end coordinates
         Integer[] endCoord = {0, maze.sumRow - 1};
         for (int row = 0; row < maze.getSumRow() - 1; row++) {
@@ -30,11 +32,13 @@ public class PathFinder {
         return endCoord;
     }
 
+    // CONVERTED
     public Integer[] moveForward(Integer[] currentStep, Integer[] nextStep) { // move forward
         currentStep = nextStep;
         return currentStep;
     }
 
+    // IN COMPASS
     public char turnRight(char oldDirection) { // turn right
         char newDirection = 'E';
         if (oldDirection == 'E') {
@@ -49,6 +53,7 @@ public class PathFinder {
         return newDirection;
     }
 
+    // IN COMPASS
     public char turnLeft(char oldDirection) { // turn left
         char newDirection = 'E';
         if (oldDirection == 'E') {
@@ -63,6 +68,7 @@ public class PathFinder {
         return newDirection;
     }
 
+    // CONVERTED
     public Integer[] nextStep(Integer[] currentStep, char direction) { // determine direction
         Integer[] nextPosition = currentStep;
         if (direction == 'E') {

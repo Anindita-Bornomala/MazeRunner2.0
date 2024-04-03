@@ -13,7 +13,11 @@ public class MazeRunner {
             logger.info("** Starting Maze Runner");
             logger.info("**** Reading the maze from file " + config.getInputFile());
             logger.info("**** Reading the string: " + config.getPathGuess());
+            logger.info("**** Reading the string: " + config.getMethod());
             
+            MazeGraph testMaze = new MazeGraph(config.getInputFile()); // TESTING MAZEGRAPH
+            testMaze.printMaze(); // TESTING MAZEGRAPH
+
             MazeData maze1 = new MazeData(config.getInputFile());
             maze1.printMazeData();
 
@@ -35,3 +39,5 @@ public class MazeRunner {
         logger.info("** End of MazeRunner");
     }
 }
+
+// This should be turned into an interface that runs either algorithm, RightHandRule or BFS 
