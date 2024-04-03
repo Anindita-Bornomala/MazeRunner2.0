@@ -41,7 +41,7 @@ public class Coordinate {
     }
 
     public String toString() {
-        return "Coordinate [x =" + this.x + ", y =" + this.y + "]";
+        return "Coordinate [x = " + this.x + ", y = " + this.y + "]";
     }
     
 }

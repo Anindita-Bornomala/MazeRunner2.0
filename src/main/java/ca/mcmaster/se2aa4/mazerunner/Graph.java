@@ -11,47 +11,28 @@ public class Graph {
         this.graph = maze.getData();
     }
 
-    public void printMaze() {
-        for (ArrayList<Integer> row : this.graph) {
-            for (Integer cell : row) {
-                if (cell == 1) {
-                    System.out.print("WALL "); // wall
-                } else {
-                    System.out.print("PASS "); // open path
-                }
-            }
-            System.out.println();
-        }
-    }
-
-
     public Coordinate startCoord(Maze maze) {
         Coordinate start = new Coordinate(0,0);
-
-        for (ArrayList<Integer> row : this.graph) {
-            for (Integer cell : row) {
-                if (cell == 1) {
-                    System.out.print("WALL "); // wall
-                } else {
-                    System.out.print("PASS "); // open path
-                }
-            }
-            System.out.println();
-        }
-
-        return null;
-    }
-
-    public Integer[] pathStart(MazeData maze) { // get start coordinates
-        // this.maze = maze;
-        Integer[] startCoord = {0, 0};
-        for (int row = 0; row < maze.getSumRow()-1; row++) {
-            if ((maze.getSumCol() > 0) && ((maze.getStartCol(row)) != '#')) {
-                startCoord[0] = row;
+        for (Integer i = 0; i < graph.size(); i++) {
+            if (graph.get(i).get(0) == 0) {
+                start.updateX(i);
                 break;
             }
         }
-        return startCoord;
-    } 
+        System.out.println(start);
+        return start;
+    }
+
+    public Coordinate endCoord(Maze maze) {
+        Coordinate start = new Coordinate(0,graph.size() - 1);
+        for (Integer i = 0; i < graph.size(); i++) {
+            if (graph.get(i).get(graph.size()-1) == 0) {
+                start.updateX(i);
+                break;
+            }
+        }
+        System.out.println(start);
+        return start;
+    }
     
 }

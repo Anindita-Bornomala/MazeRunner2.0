@@ -17,6 +17,13 @@ public class MazeRunner {
             
             Maze testMaze = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
             testMaze.printMaze(); // TESTING MAZEGRAPH
+            
+            Graph graph = new Graph(config.getInputFile());
+            Coordinate smurfStart = graph.startCoord(testMaze);
+            Coordinate smurfEnd = graph.endCoord(testMaze);
+
+
+            System.out.println();
 
             MazeData maze1 = new MazeData(config.getInputFile());
             maze1.printMazeData();
