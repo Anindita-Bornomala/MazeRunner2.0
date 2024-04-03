@@ -17,6 +17,14 @@ public class Coordinate {
         return this.y;
     }
 
+    public void updateX(Integer x) {
+        this.x = x;
+    }
+
+    public void updateY(Integer y) {
+        this.y = y;
+    }
+
     public Coordinate moveForward(Direction direction) {
         Integer newX = this.x;
         Integer newY = this.y;
@@ -29,10 +37,10 @@ public class Coordinate {
                 newY += 1;
                 break;
             case EAST:
-                newX -= 1;
+                newX += 1;
                 break;
             case WEST:
-                newX += 1;
+                newX -= 1;
                 break;
             default:
                 break;
