@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.apache.logging.log4j.core.tools.picocli.CommandLine.Help.TextTable.Cell;
 
-public class MazeGraph {
+public class MazeTest {
     private Map<Coordinate, Cell> graph; // our graph system
     private Coordinate currentStep;
     private MazeData maze; // delete later
@@ -40,13 +40,11 @@ public class MazeGraph {
     }
 
     
-    
     public Coordinate nextStep(Coordinate currentStep, Direction direction) { // determine direction
         Coordinate nextPosition = currentStep;
         nextPosition.moveForward(direction);
         return nextPosition;
     }
-
 
     public Coordinate moveForward(Coordinate currentStep, Coordinate nextStep) { // move forward
         currentStep = nextStep;
