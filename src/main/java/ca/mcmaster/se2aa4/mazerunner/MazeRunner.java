@@ -22,6 +22,16 @@ public class MazeRunner {
             Coordinate smurfStart = graph.startCoord(testMaze);
             Coordinate smurfEnd = graph.endCoord(testMaze);
 
+            System.out.println(graph.eastCoord(smurfStart));
+            System.out.println(graph.northCoord(smurfStart));
+            System.out.println(graph.southCoord(smurfStart));
+            System.out.println(graph.westCoord(smurfStart));
+            System.out.println(graph.checkPath(testMaze, smurfEnd));
+            System.out.println(graph.checkPath(testMaze, graph.southCoord(smurfStart)));
+            System.out.println(graph.checkPath(testMaze, graph.eastCoord(smurfStart)));
+            System.out.println(graph.checkPath(testMaze, graph.northCoord(smurfStart)));
+            System.out.println(graph.checkPath(testMaze, graph.westCoord(smurfStart)));
+
 
             System.out.println();
 

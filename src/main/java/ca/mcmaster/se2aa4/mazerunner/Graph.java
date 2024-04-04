@@ -41,7 +41,6 @@ public class Graph {
         return eastCoord;
     }
 
-
     public Coordinate southCoord(Coordinate currentPosition) {
         Coordinate southCoord = currentPosition;
         southCoord.updateX(southCoord.getY() + 1);
@@ -50,14 +49,25 @@ public class Graph {
 
     public Coordinate westCoord(Coordinate currentPosition) {
         Coordinate westCoord = currentPosition;
-        westCoord.updateX(westCoord.getX() + 1);
+        westCoord.updateX(westCoord.getX() - 1);
         return westCoord;
     }
 
     public Coordinate northCoord(Coordinate currentPosition) {
         Coordinate northCoord = currentPosition;
-        northCoord.updateX(northCoord.getX() + 1);
+        northCoord.updateX(northCoord.getY() - 1);
         return northCoord;
+    }
+
+
+    public Boolean checkPath(Maze maze, Coordinate coord) {
+        Integer row = coord.getX();
+        Integer col = coord.getY();
+        if (graph.get(row).get(col) == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 }
