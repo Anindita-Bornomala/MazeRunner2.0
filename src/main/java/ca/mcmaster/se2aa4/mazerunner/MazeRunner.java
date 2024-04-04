@@ -13,51 +13,23 @@ public class MazeRunner {
             logger.info("** Starting Maze Runner");
             logger.info("**** Reading the maze from file " + config.getInputFile());
             logger.info("**** Reading the string: " + config.getPathGuess());
-            logger.info("**** Reading the string: " + config.getMethod());
+            logger.info("**** Reading the method: " + config.getMethod());
             
             Maze testMaze = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
             testMaze.printMaze(); // TESTING MAZEGRAPH
             
             Graph graph = new Graph(config.getInputFile());
-            Coordinate smurfStart = graph.startCoord(testMaze);
+            Coordinate smurfStart = graph.startCoord();
             System.out.println(smurfStart);
-            Coordinate smurfEnd = graph.endCoord(testMaze);
+            Coordinate smurfEnd = graph.endCoord();
             System.out.println(smurfEnd);
 
-            System.out.println(graph.checkEast(testMaze, smurfStart)); // east, true
-            System.out.println(graph.checkNorth(testMaze, smurfStart)); // north, false
-            System.out.println(graph.checkSouth(testMaze, smurfStart)); // south, false
-            // System.out.println(graph.checkPath(testMaze, smurfEnd)); // end coord, true
 
-            // Coordinate east = graph.eastCoord(smurfStart);
-            // System.out.println(east);
-            // System.out.println(graph.checkEast(testMaze, smurfStart)); // east, true
-            // System.out.println("EPIC HATS");
-            // System.out.println(smurfStart);
-
-            // Coordinate south = graph.southCoord(smurfStart);
-            // System.out.println(south);
-            // System.out.println(graph.checkPath(testMaze, south)); // south, false
-            // System.out.println("EPIC HATS");
-            // System.out.println(smurfStart);
-
-            // Coordinate west = graph.westCoord(smurfStart);
-            // System.out.println(west);
-            // System.out.println(graph.checkPath(testMaze, west)); // west, false
-
-            // Coordinate north = graph.northCoord(smurfStart);
-            // System.out.println(north);
-            // System.out.println(graph.checkPath(testMaze, north)); // north, false
-
-            // System.out.println(graph.eastCoord(smurfStart));
-            // System.out.println(graph.northCoord(smurfStart));
-            // System.out.println(graph.southCoord(smurfStart));
-            // System.out.println(graph.westCoord(smurfStart));
-
-            // System.out.println(graph.checkPath(testMaze, graph.southCoord(smurfStart))); // south, false
-            // System.out.println(graph.checkPath(testMaze, graph.eastCoord(smurfStart))); // east, true
-            // System.out.println(graph.checkPath(testMaze, graph.northCoord(smurfStart))); // north, false
-            // System.out.println(graph.checkPath(testMaze, graph.westCoord(smurfStart)));
+            System.out.println(graph.checkEast(smurfStart)); // east, true
+            System.out.println(graph.checkNorth(smurfStart)); // north, false
+            System.out.println(graph.checkSouth(smurfStart)); // south, false
+            System.out.println(graph.checkWest(smurfStart)); // west, false
+            System.out.println(graph.checkEast(smurfEnd)); // east, false
 
 
             System.out.println();

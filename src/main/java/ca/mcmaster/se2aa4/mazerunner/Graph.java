@@ -10,17 +10,17 @@ public class Graph {
     public Graph(String filePath) {
         this.maze = new Maze(filePath);
         this.graph = maze.getData();
-        this.currentPosition = startCoord(maze);
+        this.currentPosition = startCoord();
     }
 
-
+    // UPDATES CURRENT POSITION
     public Coordinate updateCurrent(Coordinate coord) {
-        
         this.currentPosition = coord;
         return this.currentPosition;
     }
 
-    public Coordinate startCoord(Maze maze) {
+    // START COORDINATES
+    public Coordinate startCoord() {
         Coordinate start = new Coordinate(0,0);
         for (Integer i = 0; i < graph.size(); i++) {
             if (graph.get(i).get(0) == 0) {
@@ -28,70 +28,45 @@ public class Graph {
                 break;
             }
         }
-        // System.out.println(start);
         return start;
     }
 
-    public Coordinate endCoord(Maze maze) {
-        Coordinate start = new Coordinate(graph.size() - 1, 0);
+    // END COORDINATES
+    public Coordinate endCoord() {
+        Coordinate end = new Coordinate(graph.size() - 1, 0);
         for (Integer i = 0; i < graph.size(); i++) {
             if (graph.get(i).get(graph.size()-1) == 0) {
-                start.updateY(i);
+                end.updateY(i);
                 break;
             }
         }
-        // System.out.println(start);
-        return start;
+        return end;
     }
 
-    public Boolean checkEast(Maze maze, Coordinate coord) { // NEW
-        Integer row = coord.getY();
-        Integer col = coord.getX() + 1;
-        if (graph.get(row).get(col) == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    // CHECKS COORDINATE TO THE EAST
+    // RISK: USING "GRAPH" INSTEAD OF "THIS.GRAPH"
+    public boolean checkEast(Coordinate coord) {
+        int row = coord.getY();
+        int col = coord.getX() + 1;
+        return col < graph.get(0).size() && graph.get(row).get(col) == 0;
     }
 
-    public Boolean checkSouth(Maze maze, Coordinate coord) { // NEW
-        Integer row = coord.getY() + 1;
-        Integer col = coord.getX();
-        if (graph.get(row).get(col) == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean checkSouth(Coordinate coord) {
+        int row = coord.getY() + 1;
+        int col = coord.getX();
+        return row < graph.size() && graph.get(row).get(col) == 0;
     }
 
-    public Boolean checkWest(Maze maze, Coordinate coord) { // NEW
-        Integer row = coord.getY();
-        Integer col = coord.getX() - 1;
-        if (graph.get(row).get(col) == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean checkWest(Coordinate coord) {
+        int row = coord.getY();
+        int col = coord.getX() - 1;
+        return col >= 0 && graph.get(row).get(col) == 0;
     }
 
-    public Boolean checkNorth(Maze maze, Coordinate coord) { // NEW
-        Integer row = coord.getY() - 1;
-        Integer col = coord.getX();
-        if (graph.get(row).get(col) == 0) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean checkNorth(Coordinate coord) {
+        int row = coord.getY() - 1;
+        int col = coord.getX();
+        return row >= 0 && graph.get(row).get(col) == 0;
     }
 
-    public Boolean checkPath(Maze maze, Coordinate coord) {
-        Integer row = coord.getY();
-        Integer col = coord.getX();
-        if (graph.get(row).get(col) == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
 }

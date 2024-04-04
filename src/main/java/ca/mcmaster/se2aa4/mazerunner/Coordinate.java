@@ -43,5 +43,6 @@ public class Coordinate {
     public String toString() {
         return "Coordinate [x = " + this.x + ", y = " + this.y + "]";
     }
-    
 }
+
+// Coordinate is fine, tbh the only action we need is moving forward (need to fix logic for forward, right, and left turns) 
