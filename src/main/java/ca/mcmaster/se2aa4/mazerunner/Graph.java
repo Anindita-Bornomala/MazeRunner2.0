@@ -34,5 +34,30 @@ public class Graph {
         System.out.println(start);
         return start;
     }
+
+    public Coordinate eastCoord(Coordinate currentPosition) {
+        Coordinate eastCoord = currentPosition;
+        eastCoord.updateX(eastCoord.getX() + 1);
+        return eastCoord;
+    }
+
+
+    public Coordinate southCoord(Coordinate currentPosition) {
+        Coordinate southCoord = currentPosition;
+        southCoord.updateX(southCoord.getY() + 1);
+        return southCoord;
+    }
+
+    public Coordinate westCoord(Coordinate currentPosition) {
+        Coordinate westCoord = currentPosition;
+        westCoord.updateX(westCoord.getX() + 1);
+        return westCoord;
+    }
+
+    public Coordinate northCoord(Coordinate currentPosition) {
+        Coordinate northCoord = currentPosition;
+        northCoord.updateX(northCoord.getX() + 1);
+        return northCoord;
+    }
     
 }

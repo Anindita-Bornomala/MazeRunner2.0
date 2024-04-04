@@ -7,7 +7,7 @@ public class PathFinder {
         this.maze = maze;
     }
 
-    // CONVERTED
+    // OFFICIALY REPLACED BY GRAPH
     public Integer[] pathStart(MazeData maze) { // get start coordinates
         this.maze = maze;
         Integer[] startCoord = {0, 0};
@@ -20,7 +20,7 @@ public class PathFinder {
         return startCoord;
     } 
 
-    // CONVERTED
+    // OFFICIALY REPLACED BY GRAPH
     public Integer[] pathEnd(MazeData maze) { // get end coordinates
         Integer[] endCoord = {0, maze.sumRow - 1};
         for (int row = 0; row < maze.getSumRow() - 1; row++) {
