@@ -15,7 +15,7 @@ public class Graph {
         Coordinate start = new Coordinate(0,0);
         for (Integer i = 0; i < graph.size(); i++) {
             if (graph.get(i).get(0) == 0) {
-                start.updateX(i);
+                start.updateY(i);
                 break;
             }
         }
@@ -24,10 +24,10 @@ public class Graph {
     }
 
     public Coordinate endCoord(Maze maze) {
-        Coordinate start = new Coordinate(0,graph.size() - 1);
+        Coordinate start = new Coordinate(graph.size() - 1, 0);
         for (Integer i = 0; i < graph.size(); i++) {
             if (graph.get(i).get(graph.size()-1) == 0) {
-                start.updateX(i);
+                start.updateY(i);
                 break;
             }
         }
@@ -43,7 +43,7 @@ public class Graph {
 
     public Coordinate southCoord(Coordinate currentPosition) {
         Coordinate southCoord = currentPosition;
-        southCoord.updateX(southCoord.getY() + 1);
+        southCoord.updateY(southCoord.getY() + 1);
         return southCoord;
     }
 
@@ -55,7 +55,7 @@ public class Graph {
 
     public Coordinate northCoord(Coordinate currentPosition) {
         Coordinate northCoord = currentPosition;
-        northCoord.updateX(northCoord.getY() - 1);
+        northCoord.updateY(northCoord.getY() - 1);
         return northCoord;
     }
 
