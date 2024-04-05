@@ -3,7 +3,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 import java.util.ArrayList;
 
 public class Graph {
-    private Maze maze;
+    // private Maze maze;
     private ArrayList<ArrayList<Integer>> graph;
     private Coordinate currentPosition;
 
@@ -16,24 +16,28 @@ public class Graph {
     public Coordinate getCurrent() { return this.currentPosition; }
 
     public Coordinate nextStep(Direction heading) {
-        Coordinate nextStep = this.currentPosition;
+        Coordinate nextStep = new Coordinate(this.currentPosition.getX(), this.currentPosition.getY());
         switch (heading) {
             case Direction.EAST:
                 nextStep.updateX(nextStep.getX() + 1);
+                break;
             case Direction.SOUTH:
                 nextStep.updateY(nextStep.getY() + 1);
+                break;
             case Direction.WEST:
                 nextStep.updateX(nextStep.getX() - 1);
+                break;
             case Direction.NORTH:
                 nextStep.updateY(nextStep.getY() - 1);
+                break;
         }
         return nextStep;
     }
 
     // UPDATES CURRENT POSITION
-    public Coordinate updateCurrent(Coordinate coord) { // might not need to return Coornidate, can be a void method
+    public void updateCurrent(Coordinate coord) { // might not need to return Coornidate, can be a void method
         this.currentPosition = coord;
-        return this.currentPosition;
+        // return this.currentPosition;
     }
 
     // START COORDINATES

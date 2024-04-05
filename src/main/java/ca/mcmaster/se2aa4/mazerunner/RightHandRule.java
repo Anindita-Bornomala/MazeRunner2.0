@@ -3,26 +3,27 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class RightHandRule {
 
     private Compass heading;
+    private Graph graph;
 
 
-    public RightHandRule(Graph graph) {
+    public RightHandRule(Maze maze) {
+        this.graph = new Graph(maze);
         this.heading = new Compass(Direction.EAST);
     }
 
-
-    public void rightHandRuleTest(Graph graph) {
+    public void rightHandRuleTest2() {
         Coordinate startCond = graph.startCoord();
         Coordinate endCond = graph.endCoord();
-        Coordinate pointer = startCond; // maybe replace with graph.getCurrent()
-        Direction direction = this.heading.getHeading(); // Direction direct = Direction.EAST;
-        String canonical = ""; // change if can later
+        Coordinate pointer = startCond;
+        Direction direction = this.heading.getHeading();
+        String canonical = "";
         Coordinate nextPosition;
-
+    
         while (pointer.getY() < endCond.getY()) {
-            if (graph.checkRight(pointer, direction) == false) {
-                if (graph.checkForward(pointer, direction) == true) {
+            if (graph.checkRight(pointer, direction).equals(false)) {
+                if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
-                    pointer = graph.updateCurrent(nextPosition);
+                    graph.updateCurrent(nextPosition); // = pointer
                     canonical = canonical + "F";
                 } else {
                     direction = this.heading.turnLeft();
@@ -32,43 +33,12 @@ public class RightHandRule {
                 direction = this.heading.turnRight();
                 canonical = canonical + "R";
                 nextPosition = graph.nextStep(direction);
-                pointer = graph.updateCurrent(nextPosition);
+                graph.updateCurrent(nextPosition); // = pointer
                 canonical = canonical + "F";
             }
-            factorize(canonical);
+            // System.out.println(canonical);
         }
-    }
-    
-
-    public void rightHandRule(MazeData maze, Graph graph) { // delete MazeData maze parameter later
-        PathFinder pathFind = new PathFinder(maze); // delete when fully replaced
-
-        Integer[] startCond = pathFind.pathStart(maze);
-        Integer[] endCond = pathFind.pathEnd(maze);
-        Integer[] pointer = startCond;
-        char direction = 'E';
-        String canonical = "";
-        Integer[] nextPosition;
-        
-
-        while (pointer[1] < endCond[1]) { // pointer y coord < endCond y coord
-            if (pathFind.checkRight(maze, pointer, direction) == false) {
-                if (pathFind.checkFront(maze, pointer, direction) == true) {
-                    nextPosition = pathFind.nextStep(pointer, direction);
-                    pointer = pathFind.moveForward(pointer, nextPosition);
-                    canonical = canonical + "F";
-                } else {
-                    direction = pathFind.turnLeft(direction);
-                    canonical = canonical + "L";
-                }
-            } else {
-                direction = pathFind.turnRight(direction);
-                canonical = canonical + "R";
-                nextPosition = pathFind.nextStep(pointer, direction);
-                pointer = pathFind.moveForward(pointer, nextPosition);
-                canonical = canonical + "F";
-            }
-        }
+        System.out.println(canonical);
         factorize(canonical);
     }
 

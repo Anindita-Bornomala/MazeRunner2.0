@@ -10,17 +10,17 @@ import org.apache.logging.log4j.Logger;
 
 public class Maze {
     private static final Logger logger = LogManager.getLogger();
-    private ArrayList<ArrayList<Integer>> graph; // 2d Integer arraylist where path = 0, wall = 1
+    private ArrayList<ArrayList<Integer>> mazeData; // 2d Integer arraylist where path = 0, wall = 1
 
     // private Map<Coordinate, Cell> graph; // our graph system
 
     public Maze(String filePath) {
-        graph = new ArrayList<>();
+        this.mazeData = new ArrayList<>();
         storeMaze(filePath);
     }
 
     public ArrayList<ArrayList<Integer>> getData() {
-        return this.graph;
+        return this.mazeData;
     }
 
     private void storeMaze(String filePath) {
@@ -37,7 +37,7 @@ public class Maze {
                         row.add(1); // represents a wall
                     }
                 }
-                graph.add(row);
+                mazeData.add(row);
             }
             reader.close();
         } catch (IOException e) {
@@ -46,7 +46,7 @@ public class Maze {
     }
 
     public void printMaze() {
-        for (ArrayList<Integer> row : this.graph) {
+        for (ArrayList<Integer> row : this.mazeData) {
             for (Integer cell : row) {
                 if (cell == 1) {
                     System.out.print("WALL "); // wall
