@@ -35,9 +35,9 @@ public class Graph {
     }
 
     // UPDATES CURRENT POSITION
-    public void updateCurrent(Coordinate coord) { // might not need to return Coornidate, can be a void method
+    public Coordinate updateCurrent(Coordinate coord) { // might not need to return Coornidate, can be a void method
         this.currentPosition = coord;
-        // return this.currentPosition;
+        return this.currentPosition;
     }
 
     // START COORDINATES

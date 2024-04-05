@@ -12,9 +12,10 @@ public class RightHandRule {
     }
 
     public void rightHandRuleTest() {
-        Coordinate startCond = graph.startCoord();
+        Coordinate startCond = graph.getCurrent();
         Coordinate endCond = graph.endCoord();
         Coordinate pointer = startCond;
+        System.out.println(startCond); // test
         Direction direction = this.heading.getHeading();
         String canonical = "";
         Coordinate nextPosition;
@@ -23,28 +24,28 @@ public class RightHandRule {
         System.out.println(endCond.getX());
     
         int count = 0;
-        while (pointer.getX() < endCond.getX() && count < 10) {
+        while (pointer.getX() < endCond.getX()) { // && count < 50
             // System.out.println("lit"); // YEE
             if (graph.checkRight(pointer, direction).equals(false)) {
                 if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
-                    graph.updateCurrent(nextPosition); // = pointer
-                    System.out.println(nextPosition);
-                    System.out.println(pointer);
+                    pointer = graph.updateCurrent(nextPosition);
+                    // System.out.println(nextPosition);
+                    // System.out.println(pointer);
                     canonical = canonical + "F";
-                    System.out.println(canonical);
+                    // System.out.println(canonical);
                 } else {
                     direction = this.heading.turnLeft();
                     canonical = canonical + "L";
-                    System.out.println(canonical);
+                    // System.out.println(canonical);
                 }
             } else {
                 direction = this.heading.turnRight();
                 canonical = canonical + "R";
                 nextPosition = graph.nextStep(direction);
-                graph.updateCurrent(nextPosition); // = pointer
+                pointer = graph.updateCurrent(nextPosition); // = pointer
                 canonical = canonical + "F";
-                System.out.println(canonical);
+                // System.out.println(canonical);
             }
             // System.out.println(canonical);
             count++;
