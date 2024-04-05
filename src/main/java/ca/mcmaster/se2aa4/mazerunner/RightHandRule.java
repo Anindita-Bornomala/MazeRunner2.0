@@ -4,7 +4,7 @@ public class RightHandRule {
     private Compass heading;
     private Graph graph;
     
-    private PathTranslator translator; // NEW!
+    private PathTranslator translator;
 
     public RightHandRule(Maze maze) {
         this.translator = new PathTranslator();
