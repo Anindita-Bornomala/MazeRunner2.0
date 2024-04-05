@@ -13,13 +13,30 @@ public class RightHandRule {
     public void rightHandRuleTest(Graph graph) {
         Coordinate startCond = graph.startCoord();
         Coordinate endCond = graph.endCoord();
-        Coordinate pointer = graph.getCurrent();
+        Coordinate pointer = startCond; // maybe replace with graph.getCurrent()
         Direction direction = this.heading.getHeading(); // Direction direct = Direction.EAST;
-        String canonical = ""; // change if can
+        String canonical = ""; // change if can later
         Coordinate nextPosition;
 
-
-
+        while (pointer.getY() < endCond.getY()) {
+            if (graph.checkRight(pointer, direction) == false) {
+                if (graph.checkForward(pointer, direction) == true) {
+                    nextPosition = graph.nextStep(direction);
+                    pointer = graph.updateCurrent(nextPosition);
+                    canonical = canonical + "F";
+                } else {
+                    direction = this.heading.turnLeft();
+                    canonical = canonical + "L";
+                }
+            } else {
+                direction = this.heading.turnRight();
+                canonical = canonical + "R";
+                nextPosition = graph.nextStep(direction);
+                pointer = graph.updateCurrent(nextPosition);
+                canonical = canonical + "F";
+            }
+            factorize(canonical);
+        }
     }
     
 
@@ -34,7 +51,7 @@ public class RightHandRule {
         Integer[] nextPosition;
         
 
-        while (pointer[1] < endCond[1]) {
+        while (pointer[1] < endCond[1]) { // pointer y coord < endCond y coord
             if (pathFind.checkRight(maze, pointer, direction) == false) {
                 if (pathFind.checkFront(maze, pointer, direction) == true) {
                     nextPosition = pathFind.nextStep(pointer, direction);

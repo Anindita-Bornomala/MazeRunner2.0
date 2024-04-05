@@ -7,21 +7,28 @@ public class Graph {
     private ArrayList<ArrayList<Integer>> graph;
     private Coordinate currentPosition;
 
-    public Graph(String filePath) {
-        this.maze = new Maze(filePath);
+    public Graph(Maze maze) {
+        // this.maze = new Maze(filePath);
         this.graph = maze.getData();
         this.currentPosition = startCoord();
     }
 
     public Coordinate getCurrent() { return this.currentPosition; }
 
-    public Coordinate getEast() { return new Coordinate(this.currentPosition.getX() + 1, this.currentPosition.getY()); }
-    
-    public Coordinate getSouth() { return new Coordinate(this.currentPosition.getX(), this.currentPosition.getY() + 1); }
-
-    public Coordinate getWest() { return new Coordinate(this.currentPosition.getX() - 1, this.currentPosition.getY()); }
-
-    public Coordinate getNorth() { return new Coordinate(this.currentPosition.getX(), this.currentPosition.getY() - 1); }
+    public Coordinate nextStep(Direction heading) {
+        Coordinate nextStep = this.currentPosition;
+        switch (heading) {
+            case Direction.EAST:
+                nextStep.updateX(nextStep.getX() + 1);
+            case Direction.SOUTH:
+                nextStep.updateY(nextStep.getY() + 1);
+            case Direction.WEST:
+                nextStep.updateX(nextStep.getX() - 1);
+            case Direction.NORTH:
+                nextStep.updateY(nextStep.getY() - 1);
+        }
+        return nextStep;
+    }
 
     // UPDATES CURRENT POSITION
     public Coordinate updateCurrent(Coordinate coord) { // might not need to return Coornidate, can be a void method
