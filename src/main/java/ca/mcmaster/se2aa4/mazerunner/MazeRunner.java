@@ -29,7 +29,7 @@ public class MazeRunner {
                 System.out.println("yo");
                 // NEW TEST FOR RIGHTHANDRULE CLASS
                 RightHandRule getPath = new RightHandRule(testMaze);
-                getPath.rightHandRuleTest2();
+                getPath.rightHandRuleTest();
             }
 
             // System.out.println(graph.checkEast(smurfStart)); // east, true

@@ -11,23 +11,32 @@ public class RightHandRule {
         this.heading = new Compass(Direction.EAST);
     }
 
-    public void rightHandRuleTest2() {
+    public void rightHandRuleTest() {
         Coordinate startCond = graph.startCoord();
         Coordinate endCond = graph.endCoord();
         Coordinate pointer = startCond;
         Direction direction = this.heading.getHeading();
         String canonical = "";
         Coordinate nextPosition;
+        System.out.println("lit"); // WE WILL MOVE THIS DOWN UNTIL THIS METHOD WORKS
+        System.out.println(pointer.getX());
+        System.out.println(endCond.getX());
     
-        while (pointer.getY() < endCond.getY()) {
+        int count = 0;
+        while (pointer.getX() < endCond.getX() && count < 10) {
+            // System.out.println("lit"); // YEE
             if (graph.checkRight(pointer, direction).equals(false)) {
                 if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
                     graph.updateCurrent(nextPosition); // = pointer
+                    System.out.println(nextPosition);
+                    System.out.println(pointer);
                     canonical = canonical + "F";
+                    System.out.println(canonical);
                 } else {
                     direction = this.heading.turnLeft();
                     canonical = canonical + "L";
+                    System.out.println(canonical);
                 }
             } else {
                 direction = this.heading.turnRight();
@@ -35,10 +44,11 @@ public class RightHandRule {
                 nextPosition = graph.nextStep(direction);
                 graph.updateCurrent(nextPosition); // = pointer
                 canonical = canonical + "F";
+                System.out.println(canonical);
             }
             // System.out.println(canonical);
+            count++;
         }
-        System.out.println(canonical);
         factorize(canonical);
     }
 
