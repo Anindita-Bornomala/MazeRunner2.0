@@ -15,29 +15,17 @@ public class MazeRunner {
             logger.info("**** Reading the string: " + config.getPathGuess());
             logger.info("**** Reading the method: " + config.getMethod());
             
+            // TESTING REFACTORED, BETTER VERSION OF RIGHTHANDRULE
             Maze testMaze = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
-            testMaze.printMaze(); // TESTING MAZEGRAPH
-            
-            // Graph graph = new Graph(testMaze);
-            // Coordinate smurfStart = graph.startCoord();
-            // System.out.println(smurfStart);
-            // Coordinate smurfEnd = graph.endCoord();
-            // System.out.println(smurfEnd);
-            // System.out.println();
+            // testMaze.printMaze(); // TESTING MAZEGRAPH
 
             if (config.getPathGuess() == null) {
-                System.out.println("yo");
-                // NEW TEST FOR RIGHTHANDRULE CLASS
                 RightHandRule getPath = new RightHandRule(testMaze);
                 getPath.rightHandRuleTest();
             }
+            System.out.println();
 
-            // System.out.println(graph.checkEast(smurfStart)); // east, true
-            // System.out.println(graph.checkNorth(smurfStart)); // north, false
-            // System.out.println(graph.checkSouth(smurfStart)); // south, false
-            // System.out.println(graph.checkWest(smurfStart)); // west, false
-            // System.out.println(graph.checkEast(smurfEnd)); // east, false
-
+            // Original stuff
             MazeData maze1 = new MazeData(config.getInputFile());
             maze1.printMazeData();
 

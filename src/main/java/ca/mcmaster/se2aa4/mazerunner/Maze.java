@@ -12,8 +12,6 @@ public class Maze {
     private static final Logger logger = LogManager.getLogger();
     private ArrayList<ArrayList<Integer>> mazeData; // 2d Integer arraylist where path = 0, wall = 1
 
-    // private Map<Coordinate, Cell> graph; // our graph system
-
     public Maze(String filePath) {
         this.mazeData = new ArrayList<>();
         storeMaze(filePath);
@@ -29,7 +27,7 @@ public class Maze {
             String line;
             while ((line = reader.readLine()) != null) {
                 ArrayList<Integer> row = new ArrayList<>();
-                for (int column = 0; column < line.length(); column++) {
+                for (Integer column = 0; column < line.length(); column++) {
                     char cell = line.charAt(column);
                     if (cell == ' ') {
                         row.add(0); // represents a path
@@ -45,6 +43,7 @@ public class Maze {
         }
     }
 
+    // in the end, we don't need to print the maze
     public void printMaze() {
         for (ArrayList<Integer> row : this.mazeData) {
             for (Integer cell : row) {

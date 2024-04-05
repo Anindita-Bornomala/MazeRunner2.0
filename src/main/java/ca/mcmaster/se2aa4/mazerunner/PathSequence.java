@@ -11,7 +11,6 @@ public class PathSequence {
         Integer[] endCond = pathFind.pathEnd(maze);
         Integer[] pointer = startCond;
         char direction = 'E';
-        Direction direct = Direction.EAST; // NEW
         String canonical = "";
         Integer[] nextPosition;
         

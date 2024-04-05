@@ -1,56 +1,46 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public class RightHandRule {
-
     private Compass heading;
     private Graph graph;
-
+    
+    private PathTranslator translator; // NEW!
 
     public RightHandRule(Maze maze) {
+        this.translator = new PathTranslator();
         this.graph = new Graph(maze);
         this.heading = new Compass(Direction.EAST);
     }
 
     public void rightHandRuleTest() {
-        Coordinate startCond = graph.getCurrent();
         Coordinate endCond = graph.endCoord();
-        Coordinate pointer = startCond;
-        System.out.println(startCond); // test
+        Coordinate pointer = graph.getCurrent();
         Direction direction = this.heading.getHeading();
         String canonical = "";
         Coordinate nextPosition;
-        System.out.println("lit"); // WE WILL MOVE THIS DOWN UNTIL THIS METHOD WORKS
         System.out.println(pointer.getX());
         System.out.println(endCond.getX());
     
-        int count = 0;
-        while (pointer.getX() < endCond.getX()) { // && count < 50
-            // System.out.println("lit"); // YEE
+        while (pointer.getX() < endCond.getX()) {
             if (graph.checkRight(pointer, direction).equals(false)) {
                 if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
                     pointer = graph.updateCurrent(nextPosition);
-                    // System.out.println(nextPosition);
-                    // System.out.println(pointer);
                     canonical = canonical + "F";
-                    // System.out.println(canonical);
                 } else {
                     direction = this.heading.turnLeft();
                     canonical = canonical + "L";
-                    // System.out.println(canonical);
                 }
             } else {
                 direction = this.heading.turnRight();
                 canonical = canonical + "R";
                 nextPosition = graph.nextStep(direction);
-                pointer = graph.updateCurrent(nextPosition); // = pointer
+                pointer = graph.updateCurrent(nextPosition);
                 canonical = canonical + "F";
-                // System.out.println(canonical);
             }
-            // System.out.println(canonical);
-            count++;
         }
-        factorize(canonical);
+        translator.translateToFact(canonical);
+        // factorize(canonical);
     }
 
     public void factorize(String canonical) {
