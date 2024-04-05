@@ -16,33 +16,37 @@ public class MazeRunner {
             logger.info("**** Reading the method: " + config.getMethod());
             
             // TESTING REFACTORED, BETTER VERSION OF RIGHTHANDRULE
-            Maze testMaze = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
-            testMaze.printMaze(); // TESTING MAZEGRAPH
-
-            if (config.getPathGuess() == null) {
-                RightHandRule getPath = new RightHandRule(testMaze);
-                getPath.rightHandRule();
-            } else {
-                PathChecker check = new PathChecker();
-                System.out.println(check.pathCheckTest(testMaze, config.getPathGuess()));
-            }
-            System.out.println();
-
-
-            // Original stuff
-            MazeData maze1 = new MazeData(config.getInputFile());
-            maze1.printMazeData();
+            Maze mazeInput = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
+            mazeInput.printMaze(); // TESTING MAZEGRAPH
 
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
 
             if (config.getPathGuess() == null) {
-                PathSequence getSeq = new PathSequence(maze1);
-                getSeq.rightHandRule(maze1);
+                RightHandRule getPath = new RightHandRule(mazeInput);
+                getPath.rightHandRule();
             } else {
                 PathChecker check = new PathChecker();
-                System.out.println(check.pathCheck(maze1, config.getPathGuess()));
+                System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
             }
+            // System.out.println();
+
+
+            // Original stuff
+
+            // MazeData maze1 = new MazeData(config.getInputFile());
+            // maze1.printMazeData();
+
+            // System.out.print(System.lineSeparator());
+            // logger.info("**** Computing path");
+
+            // if (config.getPathGuess() == null) {
+            //     PathSequence getSeq = new PathSequence(maze1);
+            //     getSeq.rightHandRule(maze1);
+            // } else {
+            //     PathChecker check = new PathChecker();
+            //     System.out.println(check.pathCheck(maze1, config.getPathGuess()));
+            // }
         } catch (Exception e) {
             logger.error("/!\\ An error has occured /!\\");
         }

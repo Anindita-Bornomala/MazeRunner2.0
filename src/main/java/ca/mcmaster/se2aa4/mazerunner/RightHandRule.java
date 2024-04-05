@@ -18,8 +18,8 @@ public class RightHandRule {
         Direction direction = this.heading.getHeading();
         String canonical = "";
         Coordinate nextPosition;
-        System.out.println(pointer.getX());
-        System.out.println(endCond.getX());
+        // System.out.println(pointer.getX());
+        // System.out.println(endCond.getX());
     
         while (pointer.getX() < endCond.getX()) {
             if (graph.checkRight(pointer, direction).equals(false)) {
