@@ -39,3 +39,4 @@ public class Configuration {
 }
 
 // We'll need to consider a new flag, one that allows the user to choose their preferred algorithm.
+// COMPLETE

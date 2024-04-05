@@ -2,8 +2,6 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 import java.util.Map;
 
-import org.apache.logging.log4j.core.tools.picocli.CommandLine.Help.TextTable.Cell;
-
 public class MazeTest {
     // private Map<Coordinate, Cell> graph; // our graph system
     private Coordinate currentStep;

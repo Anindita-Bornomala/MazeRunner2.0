@@ -32,7 +32,7 @@ public class PathFinder {
         return endCoord;
     }
 
-    // CONVERTED
+    // REPLACED BY GRAPH
     public Integer[] moveForward(Integer[] currentStep, Integer[] nextStep) { // move forward
         currentStep = nextStep;
         return currentStep;
@@ -83,6 +83,7 @@ public class PathFinder {
         return nextPosition;
     }
 
+    // REPLACED IN GRAPH
     public boolean checkFront(MazeData maze, Integer[] currentSteps, char direction) { // check for walls in front
         Integer row = currentSteps[0];
         Integer col = currentSteps[1];
@@ -102,6 +103,7 @@ public class PathFinder {
         }
     }
 
+    // REPLACED IN GRAPH
     public boolean checkRight(MazeData maze, Integer[] currentSteps, char direction) { // check for walls to the right
         char directChange = turnRight(direction);
         boolean pass = checkFront(this.maze, currentSteps, directChange);
