@@ -3,12 +3,10 @@ package ca.mcmaster.se2aa4.mazerunner;
 import java.util.ArrayList;
 
 public class Graph {
-    // private Maze maze;
     private ArrayList<ArrayList<Integer>> graph;
     private Coordinate currentPosition;
 
     public Graph(Maze maze) {
-        // this.maze = new Maze(filePath);
         this.graph = maze.getData();
         this.currentPosition = startCoord();
     }
@@ -35,7 +33,7 @@ public class Graph {
     }
 
     // UPDATES CURRENT POSITION
-    public Coordinate updateCurrent(Coordinate coord) { // might not need to return Coornidate, can be a void method
+    public Coordinate updateCurrent(Coordinate coord) {
         this.currentPosition = coord;
         return this.currentPosition;
     }

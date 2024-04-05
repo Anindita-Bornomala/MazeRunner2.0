@@ -48,9 +48,9 @@ public class Maze {
         for (ArrayList<Integer> row : this.mazeData) {
             for (Integer cell : row) {
                 if (cell == 1) {
-                    System.out.print("WALL "); // wall
+                    System.out.print("WALL ");
                 } else {
-                    System.out.print("PASS "); // open path
+                    System.out.print("PASS ");
                 }
             }
             System.out.println();

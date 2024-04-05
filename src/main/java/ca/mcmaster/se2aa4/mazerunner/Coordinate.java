@@ -17,6 +17,7 @@ public class Coordinate {
 
     public void updateY(Integer y) { this.y = y; }
 
+    // UNUSED METHOD
     public Coordinate moveForward(Direction direction) {
         Integer newX = this.x;
         Integer newY = this.y;

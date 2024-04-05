@@ -18,8 +18,6 @@ public class RightHandRule {
         Direction direction = this.heading.getHeading();
         String canonical = "";
         Coordinate nextPosition;
-        // System.out.println(pointer.getX());
-        // System.out.println(endCond.getX());
     
         while (pointer.getX() < endCond.getX()) {
             if (graph.checkRight(pointer, direction).equals(false)) {
@@ -39,23 +37,6 @@ public class RightHandRule {
                 canonical = canonical + "F";
             }
         }
-        translator.translateToFact(canonical); // gotta be able to return the string later
-        // factorize(canonical);
+        translator.translateToFact(canonical); // might have to be able to return the string later
     }
-
-    public void factorize(String canonical) {
-        String result = "";
-        int count = 1;
-
-        for (int i = 1; i <= canonical.length(); i++) {
-            if(i == canonical.length() || canonical.charAt(i) != canonical.charAt(i-1)) {
-                result = result + count + canonical.charAt(i-1) + " ";
-                count = 1;
-            } else {
-                count++;
-            }
-        }
-        System.out.println(result);
-    }
-    
 }

@@ -15,9 +15,8 @@ public class MazeRunner {
             logger.info("**** Reading the string: " + config.getPathGuess());
             logger.info("**** Reading the method: " + config.getMethod());
             
-            // TESTING REFACTORED, BETTER VERSION OF RIGHTHANDRULE
-            Maze mazeInput = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
-            mazeInput.printMaze(); // TESTING MAZEGRAPH
+            Maze mazeInput = new Maze(config.getInputFile());
+            mazeInput.printMaze();
 
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
@@ -29,24 +28,8 @@ public class MazeRunner {
                 PathChecker check = new PathChecker();
                 System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
             }
+            
             // System.out.println();
-
-
-            // Original stuff
-
-            // MazeData maze1 = new MazeData(config.getInputFile());
-            // maze1.printMazeData();
-
-            // System.out.print(System.lineSeparator());
-            // logger.info("**** Computing path");
-
-            // if (config.getPathGuess() == null) {
-            //     PathSequence getSeq = new PathSequence(maze1);
-            //     getSeq.rightHandRule(maze1);
-            // } else {
-            //     PathChecker check = new PathChecker();
-            //     System.out.println(check.pathCheck(maze1, config.getPathGuess()));
-            // }
         } catch (Exception e) {
             logger.error("/!\\ An error has occured /!\\");
         }
