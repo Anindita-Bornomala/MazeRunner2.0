@@ -17,13 +17,17 @@ public class MazeRunner {
             
             // TESTING REFACTORED, BETTER VERSION OF RIGHTHANDRULE
             Maze testMaze = new Maze(config.getInputFile()); // TESTING MAZEGRAPH
-            // testMaze.printMaze(); // TESTING MAZEGRAPH
+            testMaze.printMaze(); // TESTING MAZEGRAPH
 
             if (config.getPathGuess() == null) {
                 RightHandRule getPath = new RightHandRule(testMaze);
-                getPath.rightHandRuleTest();
+                getPath.rightHandRule();
+            } else {
+                PathChecker check = new PathChecker();
+                System.out.println(check.pathCheckTest(testMaze, config.getPathGuess()));
             }
             System.out.println();
+
 
             // Original stuff
             MazeData maze1 = new MazeData(config.getInputFile());
@@ -36,7 +40,7 @@ public class MazeRunner {
                 PathSequence getSeq = new PathSequence(maze1);
                 getSeq.rightHandRule(maze1);
             } else {
-                PathChecker check = new PathChecker(maze1);
+                PathChecker check = new PathChecker();
                 System.out.println(check.pathCheck(maze1, config.getPathGuess()));
             }
         } catch (Exception e) {

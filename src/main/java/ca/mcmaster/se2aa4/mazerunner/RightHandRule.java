@@ -12,7 +12,7 @@ public class RightHandRule {
         this.heading = new Compass(Direction.EAST);
     }
 
-    public void rightHandRuleTest() {
+    public void rightHandRule() {
         Coordinate endCond = graph.endCoord();
         Coordinate pointer = graph.getCurrent();
         Direction direction = this.heading.getHeading();
@@ -39,7 +39,7 @@ public class RightHandRule {
                 canonical = canonical + "F";
             }
         }
-        translator.translateToFact(canonical);
+        translator.translateToFact(canonical); // gotta be able to return the string later
         // factorize(canonical);
     }
 

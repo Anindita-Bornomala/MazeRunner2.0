@@ -2,9 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class PathTranslator {
 
-    public PathTranslator() {
-
-    }
+    public PathTranslator() {}
 
     // ex. canonical = "FFFRRFLF"
     public void translateToFact(String canonical) {
@@ -20,6 +18,20 @@ public class PathTranslator {
             }
         }
         System.out.println(result);
+    }
+
+    public String translateToCanon(String factorized) {
+        String[] pathSplit = factorized.split("(?<=\\D)(?=\\d)");
+        String result = "";
+        Integer count = 0;
+
+        for (String element : pathSplit) {
+            count = element.charAt(0) - '0';
+            for (Integer i = 0; i < count; i++) {
+                result = result + element.charAt(1);
+            }
+        }
+        return result;
     }
     
 }
