@@ -13,20 +13,23 @@ public class MazeRunner {
             logger.info("** Starting Maze Runner");
             logger.info("**** Reading the maze from file " + config.getInputFile());
             logger.info("**** Reading the string: " + config.getPathGuess());
+            logger.info("**** Reading the method: " + config.getMethod());
             
-            MazeData maze1 = new MazeData(config.getInputFile());
-            maze1.printMazeData();
+            Maze mazeInput = new Maze(config.getInputFile());
+            mazeInput.printMaze();
 
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
 
             if (config.getPathGuess() == null) {
-                PathSequence getSeq = new PathSequence(maze1);
-                getSeq.rightHandRule(maze1);   
+                RightHandRule getPath = new RightHandRule(mazeInput);
+                getPath.rightHandRule();
             } else {
-                PathChecker check = new PathChecker(maze1);
-                System.out.println(check.pathCheck(maze1, config.getPathGuess()));
+                PathChecker check = new PathChecker();
+                System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
             }
+            
+            // System.out.println();
         } catch (Exception e) {
             logger.error("/!\\ An error has occured /!\\");
         }
@@ -35,3 +38,5 @@ public class MazeRunner {
         logger.info("** End of MazeRunner");
     }
 }
+
+// This should be turned into an interface that runs either algorithm, RightHandRule or BFS 
