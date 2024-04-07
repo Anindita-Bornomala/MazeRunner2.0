@@ -9,7 +9,7 @@ public class PathTranslator {
         Integer count = 1;
 
         for (Integer i = 1; i <= canonical.length(); i++) {
-            if(i == canonical.length() || canonical.charAt(i) != canonical.charAt(i-1)) {
+            if(i == canonical.length() || canonical.charAt(i) != canonical.charAt(i - 1)) {
                 result = result + count + canonical.charAt(i - 1) + " ";
                 count = 1;
             } else {
