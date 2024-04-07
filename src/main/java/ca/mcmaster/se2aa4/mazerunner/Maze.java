@@ -17,6 +17,12 @@ public class Maze {
         storeMaze(filePath);
     }
 
+
+    public void printAdjacencyList(Maze maze) {
+        AdjacencyList list = new AdjacencyList(maze);
+        System.out.println(list.createAdjacencyList());
+    }
+
     public ArrayList<ArrayList<Integer>> getData() {
         return this.mazeData;
     }

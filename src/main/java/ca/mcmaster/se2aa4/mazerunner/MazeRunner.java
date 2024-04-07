@@ -18,6 +18,9 @@ public class MazeRunner {
             Maze mazeInput = new Maze(config.getInputFile());
             mazeInput.printMaze();
 
+            // NEW TEST
+            mazeInput.printAdjacencyList(mazeInput);
+
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
 
