@@ -5,14 +5,14 @@ import java.util.Queue;
 
 
 public class BFSQueue {
-    public Queue<String> queue;
+    public Queue<Coordinate> queue;
 
     public BFSQueue() {
         queue = new LinkedList<>();
     }
-    public void enqueue(String action) { queue.add(action); }
+    public void enqueue(Coordinate coord) { queue.add(coord); }
 
-    public String dequeue() { return queue.poll(); }
+    public Coordinate dequeue() { return queue.poll(); }
 
     public Boolean isEmpty() {
         if (queue.isEmpty() == true) {

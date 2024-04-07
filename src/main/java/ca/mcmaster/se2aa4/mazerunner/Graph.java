@@ -11,6 +11,10 @@ public class Graph {
         this.currentPosition = startCoord();
     }
 
+    public Integer size() {
+        return graph.size();
+    }
+
     public Coordinate getCurrent() { return this.currentPosition; }
 
     public Coordinate nextStep(Direction heading) {
