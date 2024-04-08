@@ -90,11 +90,11 @@ public class BreadthFirstSearch {
             if (graph.checkForward(path.get(i), heading.getHeading())) {
                 result = result + "F";
                 // currentCoord = graph.getRight(currentCoord,heading.getHeading());
-            } else if (graph.checkLeft(path.get(i), heading)) {
+            } else if (graph.checkLeft(path.get(i), heading.getHeading(), heading)) {
                 result = result + "LF";
                 heading.turnLeft();
                 // currentCoord = graph.getLeft(currentCoord,heading.getHeading());
-            } else if (graph.checkRight(path.get(i), heading)) { // ADDED HEADING AS PARAMETER
+            } else if (graph.checkRight(path.get(i), heading.getHeading(), heading)) { // ADDED HEADING AS PARAMETER
                 result = result + "RF";
                 heading.turnRight();
                 // currentCoord = graph.getRight(currentCoord,heading.getHeading());

@@ -158,13 +158,14 @@ public class Graph {
         }
     }
 
-    public Boolean checkRight(Coordinate coord, Compass compass) {
-        // Compass compass = new Compass(heading);
+    public Boolean checkRight(Coordinate coord, Direction direction) {
+        Compass compass = new Compass(direction);
         Direction right = compass.getRight(); 
         return checkForward(coord, right);
     }
 
-    public Boolean checkLeft(Coordinate coord, Compass compass) {
+    public Boolean checkLeft(Coordinate coord, Direction direction) {
+        Compass compass = new Compass(direction);
         Direction left = compass.getLeft(); 
         return checkForward(coord, left);
         // Coordinate leftCoord = takeLeft(coord, heading);
