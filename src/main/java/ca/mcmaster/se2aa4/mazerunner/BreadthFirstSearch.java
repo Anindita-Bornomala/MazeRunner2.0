@@ -9,10 +9,16 @@ public class BreadthFirstSearch {
     private Graph graph;
     private PathTranslator translator;
 
+
     public BreadthFirstSearch(Maze maze) {
         this.translator = new PathTranslator();
         this.graph = new Graph(maze);
         this.heading = new Compass(Direction.EAST);
+    }
+
+
+    public void findPath(Maze maze) {
+        Coordinate startCoord = maze.
     }
 
 
@@ -45,23 +51,10 @@ public class BreadthFirstSearch {
         throw new UnsupportedOperationException("Unimplemented method 'reconstructPath'");
     }
 
-    
 }
 
-    /* BFS Algorithm:
-    if queue is empty, refill it
-    else
-    dequeue one at a time and get element (starting with East, check E, S, W, N)
-    if it equals PATH,
-    move to that coordinate (keep track of move in canonical)
-    - Need to change heading depending on move, so we know whether "F", "R", or "L"
-    Repeat process until endCond is reached
-    return canonical
 
     
-    */
-    // Algorithm:
-
     /*
     To use BFS to find the shortest path in a maze grid, you can follow these steps:
 
@@ -73,5 +66,3 @@ public class BreadthFirstSearch {
     Repeat steps 3-5 until the queue is empty or the target cell is found.
 
     */
-
-

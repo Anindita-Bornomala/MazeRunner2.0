@@ -8,9 +8,10 @@ public class Graph {
 
     public Graph(Maze maze) {
         this.graph = maze.getData();
-        this.currentPosition = startCoord();
+        this.currentPosition = maze.startCoord();
     }
 
+    // might not need
     public Integer size() {
         return graph.size();
     }
@@ -42,6 +43,7 @@ public class Graph {
         return this.currentPosition;
     }
 
+    /* 
     // START COORDINATES
     public Coordinate startCoord() {
         Coordinate start = new Coordinate(0,0);
@@ -65,6 +67,7 @@ public class Graph {
         }
         return end;
     }
+    */
 
     // CHECKS COORDINATE TO THE EAST
     // RISK: USING "GRAPH" INSTEAD OF "THIS.GRAPH"

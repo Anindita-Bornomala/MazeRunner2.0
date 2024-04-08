@@ -1,7 +1,6 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public class PathChecker {
-
     private PathTranslator translator;
 
     public PathChecker() {
@@ -17,8 +16,8 @@ public class PathChecker {
             pathGuess = translator.translateToCanon(pathGuess);
         }
 
+        Coordinate endCond = maze.endCoord();
         Coordinate pointer = graph.getCurrent();
-        Coordinate endCond = graph.endCoord();
         Direction heading = compass.getHeading();
         Coordinate nextPosition;
 

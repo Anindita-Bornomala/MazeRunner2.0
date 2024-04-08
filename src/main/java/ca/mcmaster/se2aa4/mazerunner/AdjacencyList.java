@@ -10,8 +10,22 @@ public class AdjacencyList {
     private ArrayList<ArrayList<Integer>> mazeData;
     
     public AdjacencyList(Maze maze) {
-        this.mazeData = maze.getData(); 
+        this.mazeData = maze.getData();
     }
+
+
+    public void printAdjacencyList() {
+        Map<List<Integer>, List<List<Integer>>> printList = createAdjacencyList();
+        for (Map.Entry<List<Integer>, List<List<Integer>>> entry : printList.entrySet()) {
+            System.out.println(entry);
+
+
+        }
+
+
+    }
+
+
     public Map<List<Integer>, List<List<Integer>>> createAdjacencyList() {
         // ArrayList<ArrayList<Integer>> mazeData = maze.getData();
         Map<List<Integer>, List<List<Integer>>> adjacencyList = new HashMap<>();
