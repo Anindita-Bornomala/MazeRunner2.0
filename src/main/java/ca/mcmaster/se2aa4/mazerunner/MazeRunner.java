@@ -20,11 +20,10 @@ public class MazeRunner {
             Maze mazeInput = new Maze(config.getInputFile());
             mazeInput.printMaze();
 
-            // AdjacencyList list = new AdjacencyList(mazeInput);
-            // list.createAdjacencyList();
-            // list.printAdjacencyList();
+            // AdjacencyList listTest = new AdjacencyList(mazeInput);
+            // listTest.createAdjacencyList();
+            // listTest.printAdjacencyList();
             // NEW TEST
-            // mazeInput.printAdjacencyList(mazeInput);
             /* 
             BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
             if (getPathBFS.findPath() != null) {

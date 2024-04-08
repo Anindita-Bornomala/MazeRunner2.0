@@ -15,9 +15,8 @@ public class BreadthFirstSearch {
         this.startCond = maze.startCoord();
         this.endCond = maze.endCoord();
         this.list = new AdjacencyList(maze);
-        list.createAdjacencyList();
+        list.printAdjacencyList();
     }
-
 
     public List<Coordinate> findPath() {
         System.out.println("Start: " + startCond); // TEST
@@ -32,15 +31,24 @@ public class BreadthFirstSearch {
             System.out.println("Current Coord: " + currentCoord); // TEST
 
             if (currentCoord.equals(endCond)) {
-                return reconstructPath(parent, startCond, endCond); // return the path when we reach the end
+                System.out.println("Reached end coordinate");
+                List<Coordinate> path = reconstructPath(parent, startCond, endCond);
+                System.out.println("Path: " + path);
+                return path; // return the path when we reach the end
+                // return reconstructPath(parent, startCond, endCond); // return the path when we reach the end
             }
     
+            System.out.println("YIPPEE");
+            System.out.println(list.getNeighbors(currentCoord));
+            
             for (Coordinate neighbor : list.getNeighbors(currentCoord)) {
+                System.out.println("YEEHAW");
                 if (!parent.containsKey(neighbor)) {
                     queue.enqueue(neighbor);
                     parent.put(neighbor, currentCoord);
                 }
             }
+            
         }
         return null;
     }

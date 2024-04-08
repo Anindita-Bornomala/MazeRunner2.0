@@ -16,6 +16,7 @@ public class AdjacencyList {
     }
 
     public List<Coordinate> getNeighbors(Coordinate coordinate) {
+        // System.out.println(adjacencyList.get(coordinate));
         return adjacencyList.get(coordinate);
     }
 
@@ -27,27 +28,24 @@ public class AdjacencyList {
     }
 
     public Map<Coordinate, List<Coordinate>> createAdjacencyList() {
-        // this.adjacencyList = new HashMap<>();
         for (Integer i = 0; i < mazeData.size(); i++) {
             for (Integer j = 0; j < mazeData.get(i).size(); j++) {
+                
                 if (mazeData.get(i).get(j) == 0) { // If it's a path cell
-                    Coordinate currentNode = new Coordinate(i, j);
+                    Coordinate currentNode = new Coordinate(j, i);
+
                     List<Coordinate> neighbors = new ArrayList<>();
-                    if (i > 0 && mazeData.get(i - 1).get(j) == 0) {
-                        neighbors.add(new Coordinate(i - 1, j));
-                        // neighbors.add(List.of(i - 1, j)); // Add top neighbor
+                    if (i > 0 && mazeData.get(i - 1).get(j) == 0) { // adds north node
+                        neighbors.add(new Coordinate(j, i - 1));
                     }
-                    if (i < mazeData.size() - 1 && mazeData.get(i + 1).get(j) == 0) {
-                        neighbors.add(new Coordinate(i + 1, j));
-                        // neighbors.add(List.of(i + 1, j)); // Add bottom neighbor
+                    if (i < mazeData.size() - 1 && mazeData.get(i + 1).get(j) == 0) { // adds south node
+                        neighbors.add(new Coordinate(j, i + 1));
                     }
-                    if (j > 0 && mazeData.get(i).get(j - 1) == 0) {
-                        neighbors.add(new Coordinate(i, j - 1));
-                        // neighbors.add(List.of(i, j - 1)); // Add left neighbor
+                    if (j > 0 && mazeData.get(i).get(j - 1) == 0) { // adds west node
+                        neighbors.add(new Coordinate(j - 1, i));
                     }
-                    if (j < mazeData.get(i).size() - 1 && mazeData.get(i).get(j + 1) == 0) {
-                        neighbors.add(new Coordinate(i, j + 1));
-                        // neighbors.add(List.of(i, j + 1)); // Add right neighbor
+                    if (j < mazeData.get(i).size() - 1 && mazeData.get(i).get(j + 1) == 0) { // adds east node
+                        neighbors.add(new Coordinate(j + 1, i));
                     }
                     adjacencyList.put(currentNode, neighbors);
                 }

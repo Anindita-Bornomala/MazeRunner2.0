@@ -19,6 +19,7 @@ public class Maze {
     }
 
 
+    // won't need later
     public void printAdjacencyList(Maze maze) {
         AdjacencyList list = new AdjacencyList(maze);
         list.printAdjacencyList();
