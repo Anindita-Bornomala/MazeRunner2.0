@@ -20,7 +20,8 @@ public class RightHandRule {
         Coordinate nextPosition;
     
         while (pointer.getX() < endCond.getX()) {
-            if (graph.checkRight(pointer, direction).equals(false)) {
+            if (graph.checkRight(pointer, this.heading, direction).equals(false)) { // ADDED THIS.HEADING AS PARAMETER
+                // graph.checkRight(pointer, direction, this.heading).equals(false))
                 if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
                     pointer = graph.updateCurrent(nextPosition);

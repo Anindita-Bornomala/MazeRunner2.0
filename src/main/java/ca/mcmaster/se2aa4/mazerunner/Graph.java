@@ -113,7 +113,7 @@ public class Graph {
         return newCoord;
     }
 
-    public Coordinate getRight(Coordinate coord, Direction heading) {
+    public Coordinate takeRight(Coordinate coord, Direction heading) {
         Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
         switch(heading) {
             case Direction.EAST:
@@ -128,7 +128,7 @@ public class Graph {
         return newCoord;
     }
 
-    public Coordinate getLeft(Coordinate coord, Direction heading) {
+    public Coordinate takeLeft(Coordinate coord, Direction heading) {
         Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
         switch(heading) {
             case Direction.EAST:
@@ -158,16 +158,21 @@ public class Graph {
         }
     }
 
-    public Boolean checkRight(Coordinate coord, Direction heading) {
-        Compass compass = new Compass(heading);
+    public Boolean checkRight(Coordinate coord, Compass compass) {
+        // Compass compass = new Compass(heading);
         Direction right = compass.getRight(); 
         return checkForward(coord, right);
     }
 
-    public Boolean checkLeft(Coordinate coord, Direction heading) {
-        Compass compass = new Compass(heading);
+    public Boolean checkLeft(Coordinate coord, Compass compass) {
         Direction left = compass.getLeft(); 
         return checkForward(coord, left);
+        // Coordinate leftCoord = takeLeft(coord, heading);
+        // return checkForward(leftCoord, heading);
+
+        // Compass compass = new Compass(heading);
+        // Direction left = compass.getLeft(); 
+        // return checkForward(coord, left);
     }
 
 }
