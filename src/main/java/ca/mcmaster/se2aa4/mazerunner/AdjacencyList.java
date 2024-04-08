@@ -19,6 +19,7 @@ public class AdjacencyList {
         return adjacencyList.get(coordinate);
     }
 
+    // DELETE LATER
     public void printAdjacencyList() {
         for (Map.Entry<Coordinate, List<Coordinate>> entry : adjacencyList.entrySet()) {
             System.out.println(entry);

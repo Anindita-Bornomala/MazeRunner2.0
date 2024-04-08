@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,13 +16,6 @@ public class Maze {
         this.mazeData = new ArrayList<>();
         storeMaze(filePath);
     }
-
-    // won't need later
-    public void printAdjacencyList(Maze maze) {
-        AdjacencyList list = new AdjacencyList(maze);
-        list.printAdjacencyList();
-    }
-    
 
     public ArrayList<ArrayList<Integer>> getData() {
         return this.mazeData;
@@ -88,6 +80,4 @@ public class Maze {
             }
             return endCoord;
         }
-    
-
 }

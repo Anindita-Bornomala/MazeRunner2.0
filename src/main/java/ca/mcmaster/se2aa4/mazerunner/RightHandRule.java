@@ -20,8 +20,7 @@ public class RightHandRule {
         Coordinate nextPosition;
     
         while (pointer.getX() < endCond.getX()) {
-            if (graph.checkRight(pointer, heading).equals(false)) { // ADDED THIS.HEADING AS PARAMETER
-                // graph.checkRight(pointer, direction, this.heading).equals(false))
+            if (graph.checkRight(pointer, heading).equals(false)) {
                 if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
                     pointer = graph.updateCurrent(nextPosition);
@@ -38,6 +37,6 @@ public class RightHandRule {
                 canonical = canonical + "F";
             }
         }
-        translator.translateToFact(canonical); // might have to be able to return the string later
+        translator.translateToFact(canonical);
     }
 }

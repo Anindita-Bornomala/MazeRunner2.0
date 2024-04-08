@@ -21,5 +21,4 @@ public class BFSQueue {
             return false;
         }
     }
-
 }

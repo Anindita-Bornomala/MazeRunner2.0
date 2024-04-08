@@ -1,7 +1,5 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,24 +18,29 @@ public class MazeRunner {
             Maze mazeInput = new Maze(config.getInputFile());
             mazeInput.printMaze();
 
-            BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
-            List<Coordinate> path = getPathBFS.findPath();
-            // System.out.println(path);
-            getPathBFS.coordsToPath(path);
+            // Use the Algorithm interface to implement an algo depending ont he method config
 
+            // BreadFirstSearch
+            // BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
+            // getPathBFS.breadthFirstSearch();
 
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
 
             if (config.getPathGuess() == null) {
-                RightHandRule getPath = new RightHandRule(mazeInput);
-                getPath.rightHandRule();
+                if (config.getMethod().equals("bfs")) {
+                    // To use BFS algo: enter "-method bfs"
+                    BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
+                    getPathBFS.breadthFirstSearch();
+                } else {
+                    RightHandRule getPath = new RightHandRule(mazeInput);
+                    getPath.rightHandRule();
+                }
             } else {
                 PathChecker check = new PathChecker(mazeInput);
                 System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
             }
             
-            // System.out.println();
         } catch (Exception e) {
             logger.error("/!\\ An error has occured /!\\");
         }
