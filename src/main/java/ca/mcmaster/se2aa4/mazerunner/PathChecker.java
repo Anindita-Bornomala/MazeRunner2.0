@@ -26,7 +26,7 @@ public class PathChecker {
             if (element == 'F') {
                 nextPosition = graph.nextStep(heading);
                 pointer = graph.updateCurrent(nextPosition);
-                System.out.println(nextPosition);
+                // System.out.println(nextPosition);
             } else if (element == 'R') {
                 heading = compass.turnRight();
             } else if (element == 'L') {

@@ -20,10 +20,6 @@ public class MazeRunner {
 
             // Use the Algorithm interface to implement an algo depending ont he method config
 
-            // BreadFirstSearch
-            // BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
-            // getPathBFS.breadthFirstSearch();
-
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
 
@@ -32,7 +28,8 @@ public class MazeRunner {
                     // To use BFS algo: enter "-method bfs"
                     BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
                     getPathBFS.breadthFirstSearch();
-                } else {
+                    // To use RightHandRule algo: enter "-method right"
+                } else if (config.getMethod().equals("right")) {
                     RightHandRule getPath = new RightHandRule(mazeInput);
                     getPath.rightHandRule();
                 }

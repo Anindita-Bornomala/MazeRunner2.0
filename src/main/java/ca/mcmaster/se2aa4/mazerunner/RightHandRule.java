@@ -21,13 +21,16 @@ public class RightHandRule {
     
         while (pointer.getX() < endCond.getX()) {
             if (graph.checkRight(pointer, heading).equals(false)) {
+                // System.out.println("TESTING");
                 if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
                     pointer = graph.updateCurrent(nextPosition);
                     canonical = canonical + "F";
+                    // System.out.println("TESTING");
                 } else {
                     direction = this.heading.turnLeft();
                     canonical = canonical + "L";
+                    // System.out.println("TESTING");
                 }
             } else {
                 direction = this.heading.turnRight();
@@ -35,6 +38,7 @@ public class RightHandRule {
                 nextPosition = graph.nextStep(direction);
                 pointer = graph.updateCurrent(nextPosition);
                 canonical = canonical + "F";
+                // System.out.println("TESTING");
             }
         }
         translator.translateToFact(canonical);
