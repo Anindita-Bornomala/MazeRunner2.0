@@ -20,22 +20,9 @@ public class MazeRunner {
             Maze mazeInput = new Maze(config.getInputFile());
             mazeInput.printMaze();
 
-            // AdjacencyList listTest = new AdjacencyList(mazeInput);
-            // listTest.createAdjacencyList();
-            // listTest.printAdjacencyList();
-            // NEW TEST
-            /* 
-            BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
-            if (getPathBFS.findPath() != null) {
-                System.out.println("yikes...");
-            }
-            */
-            // System.out.println(getPathBFS.findPath());
-
             BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
             List<Coordinate> path = getPathBFS.findPath();
             // System.out.println(path);
-            // getPathBFS.convertCoordinatesToMoves(path);
             getPathBFS.coordsToPath(path);
 
 
@@ -46,7 +33,7 @@ public class MazeRunner {
                 RightHandRule getPath = new RightHandRule(mazeInput);
                 getPath.rightHandRule();
             } else {
-                PathChecker check = new PathChecker();
+                PathChecker check = new PathChecker(mazeInput);
                 System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
             }
             

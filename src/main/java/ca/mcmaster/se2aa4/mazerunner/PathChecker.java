@@ -5,14 +5,18 @@ import java.util.List;
 
 public class PathChecker {
     private PathTranslator translator;
+    private Compass compass;
+    private Graph graph;
 
-    public PathChecker() {
+    public PathChecker(Maze maze) {
         this.translator = new PathTranslator();
+        this.compass = new Compass(Direction.EAST);
+        // this.graph = new Graph(maze);
     }
 
     public String pathCheck(Maze maze, String pathGuess) {
         Graph graph = new Graph(maze);
-        Compass compass = new Compass(Direction.EAST);
+        // Compass compass = new Compass(Direction.EAST);
         if (pathGuess.charAt(0) == 'F' || pathGuess.charAt(0) == 'R' || pathGuess.charAt(0) == 'L') {
             pathGuess = pathGuess.replaceAll(" ", "");
         } else {
@@ -20,7 +24,9 @@ public class PathChecker {
         }
 
         Coordinate endCond = maze.endCoord();
+        // System.out.println(endCond);
         Coordinate pointer = graph.getCurrent();
+        // System.out.println(pointer);
         Direction heading = compass.getHeading();
         Coordinate nextPosition;
 
@@ -28,10 +34,11 @@ public class PathChecker {
             if (element == 'F') {
                 nextPosition = graph.nextStep(heading);
                 pointer = graph.updateCurrent(nextPosition);
+                System.out.println(nextPosition);
             } else if (element == 'R') {
                 heading = compass.turnRight();
             } else if (element == 'L') {
-                heading = compass.getLeft();
+                heading = compass.turnLeft();
             } else {
                     continue;
             }

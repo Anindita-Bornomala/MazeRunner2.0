@@ -43,32 +43,6 @@ public class Graph {
         return this.currentPosition;
     }
 
-    /* 
-    // START COORDINATES
-    public Coordinate startCoord() {
-        Coordinate start = new Coordinate(0,0);
-        for (Integer i = 0; i < graph.size(); i++) {
-            if (graph.get(i).get(0) == 0) {
-                start.updateY(i);
-                break;
-            }
-        }
-        return start;
-    }
-
-    // END COORDINATES
-    public Coordinate endCoord() {
-        Coordinate end = new Coordinate(graph.size() - 1, 0);
-        for (Integer i = 0; i < graph.size(); i++) {
-            if (graph.get(i).get(graph.size()-1) == 0) {
-                end.updateY(i);
-                break;
-            }
-        }
-        return end;
-    }
-    */
-
     // CHECKS COORDINATE TO THE EAST
     // RISK: USING "GRAPH" INSTEAD OF "THIS.GRAPH"
     public Boolean checkEast(Coordinate coord) {
@@ -96,52 +70,7 @@ public class Graph {
         int row = coord.getY() - 1;
         int col = coord.getX();
         return row >= 0 && graph.get(row).get(col) == 0;
-    }
-
-    public Coordinate getForward(Coordinate coord, Direction heading) {
-        Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
-        switch(heading) {
-            case Direction.EAST:
-                newCoord.updateX(coord.getX() + 1);
-            case Direction.SOUTH:
-                newCoord.updateY(coord.getY() + 1);
-            case Direction.WEST:
-                newCoord.updateX(coord.getX() - 1);    
-            case Direction.NORTH:
-                newCoord.updateY(coord.getY() - 1);
-        }
-        return newCoord;
-    }
-
-    public Coordinate takeRight(Coordinate coord, Direction heading) {
-        Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
-        switch(heading) {
-            case Direction.EAST:
-                newCoord.updateY(coord.getY() + 1);
-            case Direction.SOUTH:
-                newCoord.updateX(coord.getX() - 1);
-            case Direction.WEST:
-                newCoord.updateY(coord.getY() - 1);
-            case Direction.NORTH:
-                newCoord.updateX(coord.getX() + 1);
-        }
-        return newCoord;
-    }
-
-    public Coordinate takeLeft(Coordinate coord, Direction heading) {
-        Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
-        switch(heading) {
-            case Direction.EAST:
-                newCoord.updateY(coord.getY() - 1);
-            case Direction.SOUTH:
-                newCoord.updateX(coord.getX() + 1);
-            case Direction.WEST:
-                newCoord.updateY(coord.getY() + 1);    
-            case Direction.NORTH:
-                newCoord.updateX(coord.getX() - 1);
-        }
-        return newCoord;
-    }
+    } 
 
     public Boolean checkForward(Coordinate coord, Direction heading) {
         switch(heading) {
@@ -158,14 +87,28 @@ public class Graph {
         }
     }
 
-    public Boolean checkRight(Coordinate coord, Direction direction) {
-        Compass compass = new Compass(direction);
-        Direction right = compass.getRight(); 
+    public Boolean checkRightTest(Coordinate coord, Direction heading) {
+        switch(heading) {
+            case Direction.EAST:
+                return checkSouth(coord);
+            case Direction.SOUTH:
+                return checkWest(coord);
+            case Direction.WEST:
+                return checkNorth(coord);
+            case Direction.NORTH:
+                return checkEast(coord);
+            default:
+                return false;
+        }
+    }
+
+    public Boolean checkRight(Coordinate coord, Compass compass) {
+        // Compass compass = new Compass(direction);
+        Direction right = compass.getRight();
         return checkForward(coord, right);
     }
 
-    public Boolean checkLeft(Coordinate coord, Direction direction) {
-        Compass compass = new Compass(direction);
+    public Boolean checkLeft(Coordinate coord, Compass compass) {
         Direction left = compass.getLeft(); 
         return checkForward(coord, left);
         // Coordinate leftCoord = takeLeft(coord, heading);

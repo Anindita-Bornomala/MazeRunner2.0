@@ -21,37 +21,25 @@ public class BreadthFirstSearch {
     }
 
     public List<Coordinate> findPath() {
-        System.out.println("Start: " + startCond); // TEST
-        System.out.println("End: " + endCond); // TEST
         BFSQueue queue = new BFSQueue();
         queue.enqueue(startCond);
         Map<Coordinate, Coordinate> parent = new HashMap<>();
         parent.put(startCond, null);
     
         while (!queue.isEmpty()) {
-            Coordinate currentCoord = queue.dequeue(); // dequeue the next node  
-            // System.out.println("Current Coord: " + currentCoord); // TEST
+            Coordinate currentCoord = queue.dequeue(); 
 
             if (currentCoord.equals(endCond)) {
-                // System.out.println("Reached end coordinate");
                 List<Coordinate> path = reconstructPath(parent, startCond, endCond);
-                // System.out.println("Path: " + path);
                 return path; // return the path when we reach the end
             }
-    
-            // Coordinate testCoord = new Coordinate(2, 3);
-            // System.out.println("YIPPEE");
-            // System.out.println(list);
-            // System.out.println(list.getNeighbors(testCoord));
             
             for (Coordinate neighbor : list.getNeighbors(currentCoord)) {
-                // System.out.println("YEEHAW");
                 if (!parent.containsKey(neighbor)) {
                     queue.enqueue(neighbor);
                     parent.put(neighbor, currentCoord);
                 }
             }
-            
         }
         return null;
     }
@@ -59,14 +47,10 @@ public class BreadthFirstSearch {
     private List<Coordinate> reconstructPath(Map<Coordinate, Coordinate> parent, Coordinate start, Coordinate end) {
         List<Coordinate> path = new ArrayList<>();
         Coordinate currentCoord = end;
-
         while (currentCoord != null) {
             path.add(currentCoord);
-            // System.out.println("Adding to path: " + currentCoord);  // TEST
             currentCoord = parent.get(currentCoord);
-            // System.out.println("Next coordinate: " + currentCoord); // TEST
         }
-        
         Collections.reverse(path);
         return path;
     }
@@ -75,9 +59,34 @@ public class BreadthFirstSearch {
         String result = "";
         Compass heading = new Compass(Direction.EAST);
         Coordinate currentCoord = path.get(0);
-        
+        Coordinate nextCoord = path.get(1);
+        Integer count = 0;
 
-        for (Integer i = 1; i < path.size(); i++) {
+        /*
+        while (nextCoord.getY() != endCond.getY()) {
+
+            if (directionForward(currentCoord, nextCoord, heading.getHeading())) {
+                result = result + "F";
+            } else if (directionLeft(currentCoord, nextCoord, heading)) {
+                result = result + "LF";
+                // heading.turnLeft();
+            } else if (directionRight(currentCoord, nextCoord, heading)) {
+                result = result + "RF";
+                // heading.turnRight();
+            }
+            count++;
+            currentCoord = path.get(count);
+            nextCoord = path.get(count + 1);
+            System.out.println(result);
+            System.out.println(heading.getHeading());
+
+
+        }
+        */
+
+
+        
+        for (Integer i = 0; i < path.size() - 1; i++) {
 
             Coordinate current = path.get(i);
             Coordinate next = path.get(i + 1);
@@ -87,55 +96,71 @@ public class BreadthFirstSearch {
             System.out.println(next);
 
 
-            if (graph.checkForward(path.get(i), heading.getHeading())) {
+            if (directionForward(current, next, heading.getHeading())) {
                 result = result + "F";
-                // currentCoord = graph.getRight(currentCoord,heading.getHeading());
-            } else if (graph.checkLeft(path.get(i), heading.getHeading(), heading)) {
+            } else if (directionLeft(current, next, heading)) {
                 result = result + "LF";
                 heading.turnLeft();
-                // currentCoord = graph.getLeft(currentCoord,heading.getHeading());
-            } else if (graph.checkRight(path.get(i), heading.getHeading(), heading)) { // ADDED HEADING AS PARAMETER
+            } else if (directionRight(current, next, heading)) {
                 result = result + "RF";
                 heading.turnRight();
-                // currentCoord = graph.getRight(currentCoord,heading.getHeading());
             }
             currentCoord = path.get(i);
             System.out.println(result);
             System.out.println(heading.getHeading());
         }
+        
         // result = result + "F";
         System.out.println(result);
         
     }
 
 
-    public void convertCoordinatesToMoves(List<Coordinate> coordinates) {
-        String moves = "";
-        // StringBuilder moves = new StringBuilder();
-
-        for (int i = 0; i < coordinates.size() - 1; i++) {
-            Coordinate current = coordinates.get(i);
-            Coordinate next = coordinates.get(i + 1);
-            System.out.println("CURRENT");
-            System.out.println(current);
-            System.out.println("NEXT");
-            System.out.println(next);
-
-            if (next.getX() > current.getX()) {
-                moves = moves + "F";
-                // moves.append("F");
-            } else if (next.getY() < current.getY()) {
-                moves = moves + "LF";
-                // moves.append("L");
-            } else if (next.getY() > current.getY()) {
-                moves = moves + "RF";
-                // moves.append("F");
-            }
-            System.out.println(moves);
+    public Boolean directionForward(Coordinate current, Coordinate next, Direction heading) {
+        switch(heading) {
+            case Direction.EAST:
+                if (next.getX() > current.getX()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case Direction.SOUTH:
+                if (next.getY() > current.getY()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case Direction.WEST:
+                if (next.getX() < current.getX()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case Direction.NORTH:
+                if (next.getY() < current.getY()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            default:
+                return false;
         }
+    }
 
-        System.out.println(moves.toString());
-        // return moves.toString();
+    public Boolean directionLeft(Coordinate current, Coordinate next, Compass heading) {
+        Boolean check = directionForward(current, next, heading.getLeft());
+        return check;
+        // Compass compass = heading;
+        // compass.turnLeft();
+        // return directionForward(current, next, compass);
+    }
+
+    public Boolean directionRight(Coordinate current, Coordinate next, Compass heading) {
+        Boolean check = directionForward(current, next, heading.getRight());
+        return check;
+        // Compass compass = heading;
+        // compass.turnRight();
+        // return directionForward(current, next, compass);
     }
 
 
