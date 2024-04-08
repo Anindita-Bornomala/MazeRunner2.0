@@ -15,21 +15,26 @@ public class BreadthFirstSearch {
         this.startCond = maze.startCoord();
         this.endCond = maze.endCoord();
         this.list = new AdjacencyList(maze);
+        list.createAdjacencyList();
     }
 
+
     public List<Coordinate> findPath() {
+        System.out.println("Start: " + startCond); // TEST
+        System.out.println("End: " + endCond); // TEST
         BFSQueue queue = new BFSQueue();
         queue.enqueue(startCond);
         Map<Coordinate, Coordinate> parent = new HashMap<>();
         parent.put(startCond, null);
-
+    
         while (!queue.isEmpty()) {
-            Coordinate currentCoord = queue.dequeue(); // dequeue the next node
+            Coordinate currentCoord = queue.dequeue(); // dequeue the next node  
+            System.out.println("Current Coord: " + currentCoord); // TEST
 
             if (currentCoord.equals(endCond)) {
                 return reconstructPath(parent, startCond, endCond); // return the path when we reach the end
             }
-
+    
             for (Coordinate neighbor : list.getNeighbors(currentCoord)) {
                 if (!parent.containsKey(neighbor)) {
                     queue.enqueue(neighbor);
@@ -46,7 +51,9 @@ public class BreadthFirstSearch {
 
         while (currentCoord != null) {
             path.add(currentCoord);
+            System.out.println("Adding to path: " + currentCoord);  // TEST
             currentCoord = parent.get(currentCoord);
+            System.out.println("Next coordinate: " + currentCoord); // TEST
         }
         
         Collections.reverse(path);

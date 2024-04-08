@@ -12,6 +12,7 @@ public class AdjacencyList {
     
     public AdjacencyList(Maze maze) {
         this.mazeData = maze.getData();
+        this.adjacencyList = new HashMap<>();
     }
 
     public List<Coordinate> getNeighbors(Coordinate coordinate) {
@@ -26,7 +27,7 @@ public class AdjacencyList {
     }
 
     public Map<Coordinate, List<Coordinate>> createAdjacencyList() {
-        this.adjacencyList = new HashMap<>();
+        // this.adjacencyList = new HashMap<>();
         for (Integer i = 0; i < mazeData.size(); i++) {
             for (Integer j = 0; j < mazeData.get(i).size(); j++) {
                 if (mazeData.get(i).get(j) == 0) { // If it's a path cell

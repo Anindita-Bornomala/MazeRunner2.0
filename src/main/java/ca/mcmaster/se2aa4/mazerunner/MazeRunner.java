@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,8 +20,21 @@ public class MazeRunner {
             Maze mazeInput = new Maze(config.getInputFile());
             mazeInput.printMaze();
 
+            // AdjacencyList list = new AdjacencyList(mazeInput);
+            // list.createAdjacencyList();
+            // list.printAdjacencyList();
             // NEW TEST
-            mazeInput.printAdjacencyList(mazeInput);
+            // mazeInput.printAdjacencyList(mazeInput);
+            /* 
+            BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
+            if (getPathBFS.findPath() != null) {
+                System.out.println("yikes...");
+            }
+            */
+            // System.out.println(getPathBFS.findPath());
+
+            BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
+            List<Coordinate> path = getPathBFS.findPath();
 
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
@@ -27,9 +42,6 @@ public class MazeRunner {
             if (config.getPathGuess() == null) {
                 RightHandRule getPath = new RightHandRule(mazeInput);
                 getPath.rightHandRule();
-                BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
-                getPathBFS.findPath();
-                
             } else {
                 PathChecker check = new PathChecker();
                 System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
