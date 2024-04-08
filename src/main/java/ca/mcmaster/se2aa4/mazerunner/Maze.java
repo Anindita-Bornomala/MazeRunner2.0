@@ -18,7 +18,6 @@ public class Maze {
         storeMaze(filePath);
     }
 
-
     // won't need later
     public void printAdjacencyList(Maze maze) {
         AdjacencyList list = new AdjacencyList(maze);

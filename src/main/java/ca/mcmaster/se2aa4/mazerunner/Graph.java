@@ -98,6 +98,51 @@ public class Graph {
         return row >= 0 && graph.get(row).get(col) == 0;
     }
 
+    public Coordinate getForward(Coordinate coord, Direction heading) {
+        Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
+        switch(heading) {
+            case Direction.EAST:
+                newCoord.updateX(coord.getX() + 1);
+            case Direction.SOUTH:
+                newCoord.updateY(coord.getY() + 1);
+            case Direction.WEST:
+                newCoord.updateX(coord.getX() - 1);    
+            case Direction.NORTH:
+                newCoord.updateY(coord.getY() - 1);
+        }
+        return newCoord;
+    }
+
+    public Coordinate getRight(Coordinate coord, Direction heading) {
+        Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
+        switch(heading) {
+            case Direction.EAST:
+                newCoord.updateY(coord.getY() + 1);
+            case Direction.SOUTH:
+                newCoord.updateX(coord.getX() - 1);
+            case Direction.WEST:
+                newCoord.updateY(coord.getY() - 1);
+            case Direction.NORTH:
+                newCoord.updateX(coord.getX() + 1);
+        }
+        return newCoord;
+    }
+
+    public Coordinate getLeft(Coordinate coord, Direction heading) {
+        Coordinate newCoord = new Coordinate(coord.getX(), coord.getY());
+        switch(heading) {
+            case Direction.EAST:
+                newCoord.updateY(coord.getY() - 1);
+            case Direction.SOUTH:
+                newCoord.updateX(coord.getX() + 1);
+            case Direction.WEST:
+                newCoord.updateY(coord.getY() + 1);    
+            case Direction.NORTH:
+                newCoord.updateX(coord.getX() - 1);
+        }
+        return newCoord;
+    }
+
     public Boolean checkForward(Coordinate coord, Direction heading) {
         switch(heading) {
             case Direction.EAST:
@@ -117,6 +162,12 @@ public class Graph {
         Compass compass = new Compass(heading);
         Direction right = compass.getRight(); 
         return checkForward(coord, right);
+    }
+
+    public Boolean checkLeft(Coordinate coord, Direction heading) {
+        Compass compass = new Compass(heading);
+        Direction left = compass.getLeft(); 
+        return checkForward(coord, left);
     }
 
 }

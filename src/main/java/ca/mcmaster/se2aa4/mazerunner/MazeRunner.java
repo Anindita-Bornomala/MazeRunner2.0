@@ -34,6 +34,8 @@ public class MazeRunner {
 
             BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
             List<Coordinate> path = getPathBFS.findPath();
+            getPathBFS.coordsToPath(path);
+
 
             System.out.print(System.lineSeparator());
             logger.info("**** Computing path");

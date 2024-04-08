@@ -10,12 +10,14 @@ public class BreadthFirstSearch {
     private Coordinate startCond;
     private Coordinate endCond;
     private AdjacencyList list;
+    private Graph graph; 
 
     public BreadthFirstSearch(Maze maze) {
         this.startCond = maze.startCoord();
         this.endCond = maze.endCoord();
         this.list = new AdjacencyList(maze);
-        list.printAdjacencyList();
+        this.graph = new Graph(maze);
+        // list.printAdjacencyList();
     }
 
     public List<Coordinate> findPath() {
@@ -38,8 +40,10 @@ public class BreadthFirstSearch {
                 // return reconstructPath(parent, startCond, endCond); // return the path when we reach the end
             }
     
-            System.out.println("YIPPEE");
-            System.out.println(list.getNeighbors(currentCoord));
+            // Coordinate testCoord = new Coordinate(2, 3);
+            // System.out.println("YIPPEE");
+            // System.out.println(list);
+            // System.out.println(list.getNeighbors(testCoord));
             
             for (Coordinate neighbor : list.getNeighbors(currentCoord)) {
                 System.out.println("YEEHAW");
@@ -66,6 +70,32 @@ public class BreadthFirstSearch {
         
         Collections.reverse(path);
         return path;
+    }
+
+
+    public void coordsToPath(List<Coordinate> path) {
+        String result = "";
+        Compass heading = new Compass(Direction.EAST);
+        // ArrayList<ArrayList<Integer>> mazeData = maze.getData();
+        Coordinate currentCoord = path.get(0);
+
+        for (Integer i = 1; i < path.size() - 1; i++) {
+            // System.out.println("YIKES");
+            if (graph.checkForward(path.get(i),heading.getHeading())) {
+                result = result + "F";
+                currentCoord = graph.getForward(currentCoord,heading.getHeading());
+            } else if (graph.checkLeft(path.get(i),heading.getHeading())) {
+                result = result + "LF";
+                heading.turnLeft();
+                currentCoord = graph.getLeft(currentCoord,heading.getHeading());
+            } else if (graph.checkRight(path.get(i),heading.getHeading())) {
+                result = result + "RF";
+                heading.turnRight();
+                currentCoord = graph.getRight(currentCoord,heading.getHeading());
+            }
+        }
+        System.out.println(result);
+        
     }
 
 }

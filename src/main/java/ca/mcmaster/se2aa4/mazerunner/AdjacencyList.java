@@ -6,23 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 public class AdjacencyList {
-    // private ArrayList<ArrayList<Integer>> graph;
     private ArrayList<ArrayList<Integer>> mazeData;
     Map<Coordinate, List<Coordinate>> adjacencyList;
     
     public AdjacencyList(Maze maze) {
         this.mazeData = maze.getData();
         this.adjacencyList = new HashMap<>();
+        createAdjacencyList();
     }
 
     public List<Coordinate> getNeighbors(Coordinate coordinate) {
-        // System.out.println(adjacencyList.get(coordinate));
         return adjacencyList.get(coordinate);
     }
 
     public void printAdjacencyList() {
-        Map<Coordinate, List<Coordinate>> printList = createAdjacencyList();
-        for (Map.Entry<Coordinate, List<Coordinate>> entry : printList.entrySet()) {
+        for (Map.Entry<Coordinate, List<Coordinate>> entry : adjacencyList.entrySet()) {
             System.out.println(entry);
         }
     }
