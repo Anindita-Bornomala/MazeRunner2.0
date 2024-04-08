@@ -1,68 +1,56 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BreadthFirstSearch {
-    private Compass heading;
-    private Graph graph;
-    private PathTranslator translator;
-
+    private Coordinate startCond;
+    private Coordinate endCond;
+    private AdjacencyList list;
 
     public BreadthFirstSearch(Maze maze) {
-        this.translator = new PathTranslator();
-        this.graph = new Graph(maze);
-        this.heading = new Compass(Direction.EAST);
+        this.startCond = maze.startCoord();
+        this.endCond = maze.endCoord();
+        this.list = new AdjacencyList(maze);
     }
 
-
-    public void findPath(Maze maze) {
-        Coordinate startCoord = maze.
-    }
-
-
-    public List<Coordinate> solveMaze(Graph maze, Coordinate start, Coordinate end) {
+    public List<Coordinate> findPath() {
         BFSQueue queue = new BFSQueue();
-        queue.enqueue(start);
-        Map<Coordinate, String> parent = new HashMap<>();
-        parent.put(start, null);
+        queue.enqueue(startCond);
+        Map<Coordinate, Coordinate> parent = new HashMap<>();
+        parent.put(startCond, null);
 
-        // while the queue isn't empty, we dequeue the next node we need to search for 
         while (!queue.isEmpty()) {
-            Coordinate coord = queue.dequeue();
-            Coordinate currentCoord = new Coordinate(coord.getX(), coord.getY());
+            Coordinate currentCoord = queue.dequeue(); // dequeue the next node
 
-            // if the current node == end node, it means we reached the end of the maze!
-            if (currentCoord.equals(end)) {
-                return reconstructPath(parent, start, end);
+            if (currentCoord.equals(endCond)) {
+                return reconstructPath(parent, startCond, endCond); // return the path when we reach the end
             }
 
-            for (Direction direction : Direction.values()) {
-                Coordinate nextCoord = maze.nextStep(direction);
+            for (Coordinate neighbor : list.getNeighbors(currentCoord)) {
+                if (!parent.containsKey(neighbor)) {
+                    queue.enqueue(neighbor);
+                    parent.put(neighbor, currentCoord);
+                }
             }
-
         }
         return null;
     }
 
-    private List<Coordinate> reconstructPath(Map<Coordinate, String> parent, Coordinate start, Coordinate end) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'reconstructPath'");
+    private List<Coordinate> reconstructPath(Map<Coordinate, Coordinate> parent, Coordinate start, Coordinate end) {
+        List<Coordinate> path = new ArrayList<>();
+        Coordinate currentCoord = end;
+
+        while (currentCoord != null) {
+            path.add(currentCoord);
+            currentCoord = parent.get(currentCoord);
+        }
+        
+        Collections.reverse(path);
+        return path;
     }
 
 }
-
-
-    
-    /*
-    To use BFS to find the shortest path in a maze grid, you can follow these steps:
-
-    Create a queue to store the cells to be visited and a set to keep track of visited cells.
-    Enqueue the starting cell into the queue and mark it as visited.
-    While the queue is not empty, dequeue a cell from the queue.
-    Check if the dequeued cell is the target cell. If it is, reconstruct the path and return it.
-    Otherwise, enqueue all valid neighboring cells that are not walls and have not been visited. Mark them as visited and set their parent to the current cell.
-    Repeat steps 3-5 until the queue is empty or the target cell is found.
-
-    */

@@ -3,21 +3,17 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class RightHandRule {
     private Compass heading;
     private Graph graph;
-    // private Coordinate startCoord;
     private Coordinate endCond;
-
     private PathTranslator translator;
 
     public RightHandRule(Maze maze) {
         this.translator = new PathTranslator();
         this.graph = new Graph(maze);
         this.heading = new Compass(Direction.EAST);
-        // this.startCoord = maze.startCoord();
         this.endCond = maze.endCoord();
     }
 
     public void rightHandRule() {
-        // Coordinate endCond = endCoord; // might not need
         Coordinate pointer = graph.getCurrent();
         Direction direction = this.heading.getHeading();
         String canonical = "";

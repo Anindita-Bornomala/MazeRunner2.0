@@ -23,6 +23,7 @@ public class Maze {
         AdjacencyList list = new AdjacencyList(maze);
         list.printAdjacencyList();
     }
+    
 
     public ArrayList<ArrayList<Integer>> getData() {
         return this.mazeData;

@@ -27,6 +27,9 @@ public class MazeRunner {
             if (config.getPathGuess() == null) {
                 RightHandRule getPath = new RightHandRule(mazeInput);
                 getPath.rightHandRule();
+                BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
+                getPathBFS.findPath();
+                
             } else {
                 PathChecker check = new PathChecker();
                 System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
