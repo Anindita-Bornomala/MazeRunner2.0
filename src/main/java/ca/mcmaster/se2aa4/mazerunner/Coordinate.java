@@ -1,5 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
+import java.util.Objects;
+
 public class Coordinate {
     private Integer x;
     private Integer y;
@@ -17,33 +19,20 @@ public class Coordinate {
 
     public void updateY(Integer y) { this.y = y; }
 
-    // UNUSED METHOD
-    public Coordinate moveForward(Direction direction) {
-        Integer newX = this.x;
-        Integer newY = this.y;
-
-        switch(direction) {
-            case NORTH:
-                newY -= 1;
-                break;
-            case SOUTH:
-                newY += 1;
-                break;
-            case EAST:
-                newX += 1;
-                break;
-            case WEST:
-                newX -= 1;
-                break;
-            default:
-                break;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return new Coordinate(newX, newY);
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Coordinate other = (Coordinate) obj;
+        return this.x == other.x && this.y == other.y;
     }
 
-    public String toString() {
-        return "Coordinate [x = " + this.x + ", y = " + this.y + "]";
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }
-
-// Coordinate is fine, tbh the only action we need is moving forward (need to fix logic for forward, right, and left turns) 
