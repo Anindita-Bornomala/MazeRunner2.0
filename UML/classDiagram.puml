@@ -1,0 +1,50 @@
+@startuml umlDiagram
+
+class MazeRunner
+class Configuration
+class Maze
+class BreadthFirstSearch
+class RightHandRule
+class PathChecker
+class PathTranslator
+class Graph
+class AdjacencyList
+class BFSQueue
+class Compass
+class Coordinate
+enum Direction
+
+MazeRunner --> Configuration
+MazeRunner --> BreadthFirstSearch
+MazeRunner --> RightHandRule
+MazeRunner --> PathChecker
+MazeRunner --> Maze
+
+BreadthFirstSearch --> Maze
+BreadthFirstSearch --> AdjacencyList
+BreadthFirstSearch --> PathTranslator
+
+RightHandRule --> Maze
+RightHandRule --> Graph
+RightHandRule --> PathTranslator
+RightHandRule --> Compass
+
+PathChecker --> Maze
+PathChecker --> PathTranslator
+PathChecker --> Compass
+
+Maze --> Coordinate
+
+Graph --> Maze
+Graph --> Coordinate
+Graph --> Compass
+
+AdjacencyList --> Maze
+AdjacencyList --> Coordinate
+AdjacencyList --> BFSQueue
+
+BFSQueue --> Coordinate
+
+Compass --> Direction
+
+@enduml
