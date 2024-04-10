@@ -4,7 +4,7 @@ public class PathTranslator {
 
     public PathTranslator() {}
 
-    public void translateToFact(String canonical) {
+    public String translateToFact(String canonical) {
         String result = "";
         Integer count = 1;
 
@@ -16,7 +16,8 @@ public class PathTranslator {
                 count++;
             }
         }
-        System.out.println(result);
+        return result;
+        // System.out.println(result);
     }
 
     public String translateToCanon(String factorized) {
