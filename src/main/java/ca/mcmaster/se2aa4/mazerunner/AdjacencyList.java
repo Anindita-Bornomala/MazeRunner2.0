@@ -27,13 +27,13 @@ public class AdjacencyList {
                     Coordinate currentNode = new Coordinate(col, row);
 
                     List<Coordinate> neighbors = new ArrayList<>();
-                    if (row > 0 && mazeData.get(row - 1).get(col) == 0) { // adds north node
+                    if (row > 0 && mazeData.get(row - 1).get(col) == 0) { // north node
                         neighbors.add(new Coordinate(col, row - 1));
                     }
-                    if (row < mazeData.size() - 1 && mazeData.get(row + 1).get(col) == 0) { // adds south node
+                    if (row < mazeData.size() - 1 && mazeData.get(row + 1).get(col) == 0) { // south node
                         neighbors.add(new Coordinate(col, row + 1));
                     }
-                    if (col > 0 && mazeData.get(row).get(col - 1) == 0) { // adds west node
+                    if (col > 0 && mazeData.get(row).get(col - 1) == 0) { // west node
                         neighbors.add(new Coordinate(col - 1, row));
                     }
                     if (col < mazeData.get(row).size() - 1 && mazeData.get(row).get(col + 1) == 0) { // adds east node

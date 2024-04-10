@@ -38,7 +38,7 @@ public class RightHandRule {
                 canonical = canonical + "F";
             }
         }
-        pathCount = canonical.length(); // this is for benchmark 4, aka the baselineCount!
+        pathCount = canonical.length(); // this is for baselineCount, used in speedup
         return translator.translateToFact(canonical);
     }
 

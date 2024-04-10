@@ -72,7 +72,7 @@ public class BreadthFirstSearch {
                 heading.turnRight();
             }
         }
-        this.pathCount = result.length(); // gets the methodCount for benchmark 4
+        this.pathCount = result.length(); // gets the methodCount for speedup
         return translator.translateToFact(result);
     }
 
