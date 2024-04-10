@@ -3,24 +3,25 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class RightHandRule {
     private Compass heading;
     private Graph graph;
-    
-    private PathTranslator translator; // NEW!
+    private Coordinate endCond;
+    private PathTranslator translator;
+    private Integer pathCount;
 
     public RightHandRule(Maze maze) {
         this.translator = new PathTranslator();
         this.graph = new Graph(maze);
         this.heading = new Compass(Direction.EAST);
+        this.endCond = maze.endCoord();
     }
 
-    public void rightHandRule() {
-        Coordinate endCond = graph.endCoord();
+    public String rightHandRule() {
         Coordinate pointer = graph.getCurrent();
         Direction direction = this.heading.getHeading();
         String canonical = "";
         Coordinate nextPosition;
     
         while (pointer.getX() < endCond.getX()) {
-            if (graph.checkRight(pointer, direction).equals(false)) {
+            if (graph.checkRight(pointer, heading).equals(false)) {
                 if (graph.checkForward(pointer, direction).equals(true)) {
                     nextPosition = graph.nextStep(direction);
                     pointer = graph.updateCurrent(nextPosition);
@@ -37,6 +38,11 @@ public class RightHandRule {
                 canonical = canonical + "F";
             }
         }
-        translator.translateToFact(canonical); // might have to be able to return the string later
+        pathCount = canonical.length(); // this is for benchmark 4, aka the baselineCount!
+        return translator.translateToFact(canonical);
+    }
+
+    public Integer getPathCount() {
+        return this.pathCount;
     }
 }

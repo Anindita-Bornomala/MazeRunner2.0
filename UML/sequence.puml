@@ -1,0 +1,178 @@
+@startuml sequence
+class AdjacencyList {
+    - mazeData: ArrayList<ArrayList<Integer>>
+    - adjacencyList: Map<Coordinate, List<Coordinate>>
+    + AdjacencyList(maze: Maze)
+    + getNeighbors(coordinate: Coordinate): List<Coordinate>
+    + createAdjacencyList(): Map<Coordinate, List<Coordinate>>
+}
+
+
+class BFSQueue {
+    - queue: Queue<Coordinate>
+    + BFSQueue()
+    + enqueue(coord: Coordinate): void
+    + dequeue(): Coordinate
+    + isEmpty(): Boolean
+}
+
+class BreadthFirstSearch {
+    - startCond: Coordinate
+    - endCond: Coordinate
+    - list: AdjacencyList
+    - translator: PathTranslator
+    - pathCount: Integer
+    + BreadthFirstSearch(maze: Maze)
+    + breadthFirstSearch(): String
+    + reconstructPath(parent: Map<Coordinate, Coordinate>, start: Coordinate, end: Coordinate): List<Coordinate>
+    + coordsToPath(path: List<Coordinate>): String
+    + directionForward(current: Coordinate, next: Coordinate, heading: Direction): boolean
+    + directionLeft(current: Coordinate, next: Coordinate, heading: Compass): boolean
+    + directionRight(current: Coordinate, next: Coordinate, heading: Compass): boolean
+    + getPathCount(): Integer
+}
+
+class Compass {
+    - heading: Direction
+    - goingRight: Map<Direction, Direction>
+    - goingLeft: Map<Direction, Direction>
+    + Compass(heading: Direction)
+    + turnLeft(): Direction
+    + turnRight(): Direction
+    + getHeading(): Direction
+    + getLeft(): Direction
+    + getRight(): Direction
+    + buildCompass(): void
+}
+
+class Configuration {
+    - inputFile: String
+    - pathGuess: String
+    - method: String
+    - baseline: String
+    + Configuration(inputFile: String, pathGuess: String, inputMethod: String, inputBaseline: String)
+    + configure(cmdArgs: String[]): Configuration
+    + getInputFile(): String
+    + getPathGuess(): String
+    + getMethod(): String
+    + getBaseline(): String
+}
+
+class Coordinate {
+    - x: Integer
+    - y: Integer
+    + Coordinate(x: Integer, y: Integer)
+    + getX(): Integer
+    + getY(): Integer
+    + updateX(x: Integer): void
+    + updateY(y: Integer): void
+    + equals(obj: Object): boolean
+    + hashCode(): int
+}
+
+enum Direction {
+    NORTH
+    SOUTH
+    EAST
+    WEST
+}
+
+class Graph {
+    - graph: ArrayList<ArrayList<Integer>>
+    - currentPosition: Coordinate
+    + Graph(maze: Maze)
+    + getCurrent(): Coordinate
+    + nextStep(heading: Direction): Coordinate
+    + updateCurrent(coord: Coordinate): Coordinate
+    + checkEast(coord: Coordinate): Boolean
+    + checkSouth(coord: Coordinate): Boolean
+    + checkWest(coord: Coordinate): Boolean
+    + checkNorth(coord: Coordinate): Boolean
+    + checkForward(coord: Coordinate, heading: Direction): Boolean
+    + checkRight(coord: Coordinate, compass: Compass): Boolean
+    + checkLeft(coord: Coordinate, compass: Compass): Boolean
+}
+
+interface Main {
+    {static} + logger: Logger
+    + main(args: String[]): void
+}
+
+class Maze {
+    - mazeData: ArrayList<ArrayList<Integer>>
+    + Maze(filePath: String)
+    + getData(): ArrayList<ArrayList<Integer>>
+    - storeMaze(filePath: String): void
+    + startCoord(): Coordinate
+    + endCoord(): Coordinate
+}
+
+class MazeRunner {
+    - righthandPath: String
+    - bfsPath: String
+    + MazeRunner(args: String[])
+}
+
+class PathChecker {
+    - translator: PathTranslator
+    - compass: Compass
+    + PathChecker(maze: Maze)
+    + pathCheck(maze: Maze, pathGuess: String): String
+}
+
+class PathTranslator {
+    + PathTranslator()
+    + translateToFact(canonical: String): String
+    + translateToCanon(factorized: String): String
+}
+
+class RightHandRule {
+    - heading: Compass
+    - graph: Graph
+    - endCond: Coordinate
+    - translator: PathTranslator
+    - pathCount: Integer
+    + RightHandRule(maze: Maze)
+    + rightHandRule(): String
+    + getPathCount(): Integer
+}
+
+*/
+class MazeRunner {
+    + Configuration
+    + Maze
+    + BreadthFirstSearch
+    + RightHandRule
+    + PathChecker
+}
+class Configuration
+class Maze
+class BreadthFirstSearch {
+    + Maze
+    + Coordinate
+    + AdjacencyList
+    + BFSQueue
+    + PathTranslator
+}
+class Graph {
+    + Maze
+    + Coordinate
+}
+class RightHandRule {
+    + Maze
+    + Compass
+    + Graph
+    + Coordinate
+    + PathTranslator
+}
+class PathChecker {
+    + Maze
+    + Coordinate
+    + Graph
+    + Compass
+}
+class PathTranslator
+class Compass {
+    + Direction
+}
+@enduml

@@ -43,17 +43,27 @@ public class Maze {
         }
     }
 
-    // in the end, we don't need to print the maze
-    public void printMaze() {
-        for (ArrayList<Integer> row : this.mazeData) {
-            for (Integer cell : row) {
-                if (cell == 1) {
-                    System.out.print("WALL ");
-                } else {
-                    System.out.print("PASS ");
-                }
+    // START COORDINATES
+    public Coordinate startCoord() {
+        Coordinate startCoord = new Coordinate(0,0);
+        for (Integer i = 0; i < mazeData.size(); i++) {
+            if (mazeData.get(i).get(0) == 0) {
+                startCoord.updateY(i);
+                break;
             }
-            System.out.println();
         }
-    }    
+        return startCoord;
+    }
+
+    // END COORDINATES
+    public Coordinate endCoord() {
+        Coordinate endCoord = new Coordinate(mazeData.size() - 1, 0);
+        for (Integer i = 0; i < mazeData.size(); i++) {
+            if (mazeData.get(i).get(mazeData.size()-1) == 0) {
+                endCoord.updateY(i);
+                break;
+            }
+        }
+        return endCoord;
+    }
 }
