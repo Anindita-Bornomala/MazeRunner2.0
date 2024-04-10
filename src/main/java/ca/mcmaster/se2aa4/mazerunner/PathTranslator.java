@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class PathTranslator {
 
-    public PathTranslator() {} // MAYBE DELETE IDK
+    public PathTranslator() {}
 
     public String translateToFact(String canonical) {
         String result = "";
