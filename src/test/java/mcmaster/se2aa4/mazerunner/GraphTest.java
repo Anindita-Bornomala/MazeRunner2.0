@@ -25,7 +25,10 @@ public class GraphTest {
     @Test
     public void nextStepTest() {
         testGraph.updateCurrent(new Coordinate(1, 1));  // Set current position to (1, 1)
-        assertEquals(new Coordinate(2, 1), testGraph.nextStep(Direction.EAST));
+        Coordinate expected = new Coordinate(2, 1);
+        Coordinate result = testGraph.nextStep(Direction.EAST);
+        assertEquals(expected, result);
+        
         assertEquals(new Coordinate(1, 2), testGraph.nextStep(Direction.SOUTH));
         // Add more test cases for WEST and NORTH directions
     }
