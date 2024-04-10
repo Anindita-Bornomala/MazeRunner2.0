@@ -32,5 +32,23 @@ public class GraphTest {
         assertEquals(new Coordinate(1, 2), testGraph.nextStep(Direction.SOUTH));
         // Add more test cases for WEST and NORTH directions
     }
-    
+
+    @Test
+    public void nextStepTest() {
+        testGraph.updateCurrent(new Coordinate(1, 1));
+        Coordinate expectedEast
+
+        // Test moving east
+        assertEquals(new Coordinate(2, 1), testGraph.nextStep(Direction.EAST));
+
+        // Test moving south
+        assertEquals(new Coordinate(1, 2), testGraph.nextStep(Direction.SOUTH));
+
+        // Test moving west
+        assertEquals(new Coordinate(0, 1), testGraph.nextStep(Direction.WEST));
+
+        // Test moving north
+        assertEquals(new Coordinate(1, 0), testGraph.nextStep(Direction.NORTH));
+    }
+
 }
