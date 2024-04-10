@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import ca.mcmaster.se2aa4.mazerunner.PathChecker;
+import ca.mcmaster.se2aa4.mazerunner.Maze;
 
 class PathCheckerTest {
     private Maze testMaze;
@@ -11,14 +12,14 @@ class PathCheckerTest {
 
     @BeforeEach
     public void setup() {
-        this.testMaze = new Maze(/* pass your maze parameters here */);
+        this.testMaze = new Maze("./examples/straight.maz.txt");
         this.testPathChecker = new PathChecker(testMaze);
     }
 
     @Test
     public void testPathCheck() {
         // Test a correct path
-        String correctPath = "FFRFF";
+        String correctPath = "FFFF";
         String resultCorrect = testPathChecker.pathCheck(testMaze, correctPath);
         assertEquals("Correct path!", resultCorrect);
 

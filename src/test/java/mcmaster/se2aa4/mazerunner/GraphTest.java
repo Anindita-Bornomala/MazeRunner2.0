@@ -34,9 +34,9 @@ public class GraphTest {
     }
 
     @Test
-    public void nextStepTest() {
+    public void nextStepTest2() {
         testGraph.updateCurrent(new Coordinate(1, 1));
-        Coordinate expectedEast
+        Coordinate expectedEast;
 
         // Test moving east
         assertEquals(new Coordinate(2, 1), testGraph.nextStep(Direction.EAST));
