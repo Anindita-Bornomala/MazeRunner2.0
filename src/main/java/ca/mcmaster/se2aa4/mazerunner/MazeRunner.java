@@ -5,8 +5,10 @@ import org.apache.logging.log4j.Logger;
 
 public class MazeRunner {
     private static final Logger logger = LogManager.getLogger();
+    private static String path = "";
 
     public MazeRunner(String[] args) {
+
         try {
             Configuration config = Configuration.configure(args);
 
@@ -20,21 +22,50 @@ public class MazeRunner {
             logger.info("**** Reading for baseline: " + config.getBaseline());
             Maze mazeInput = new Maze(config.getInputFile());
             // mazeInput.printMaze(); // TEST
+
             long loadTime = System.currentTimeMillis() - startTime;
-            logger.info("Time spent loading the maze: " + String.format("%.2f", loadTime / 1000.0) + " seconds");
+            // logger.info("Time spent loading the maze: " + String.format("%.2f", loadTime / 1000.0) + " seconds");
 
-
-            // long benchmarkTwo = System.currentTimeMillis();
-            // System.out.println(benchmarkTwo);
-            // logger.info("Time spent loading the maze: " + String.format("%.2f", loadTime/1000.0) + " seconds"); // BASELINE
-
-            System.out.print(System.lineSeparator());
+            System.out.println(); // System.out.print(System.lineSeparator());
             logger.info("**** Computing path");
 
 
             if (config.getBaseline() != null) {
+                // benchmark 1
+                logger.info("Time spent loading the maze: " + String.format("%.2f", loadTime / 1000.0) + " seconds");
 
+                // benchmark 2
+                startTime = System.currentTimeMillis();
+                BreadthFirstSearch bfs = new BreadthFirstSearch(mazeInput);
+                bfs.breadthFirstSearch();
+                // Integer methodCount = bfs.getPathCount();
+                long methodTime = System.currentTimeMillis() - startTime;
+                logger.info("Time spent running BFS algorithm: " + String.format("%.2f", methodTime / 1000.0) + " seconds");
+
+                // benchmark 3
+                startTime = System.currentTimeMillis();
+                RightHandRule righthand = new RightHandRule(mazeInput);
+                righthand.rightHandRule();
+                // Integer baselineCount = righthand.getPathCount();
+                long baselineTime = System.currentTimeMillis() - startTime;
+                logger.info("Time spent running BFS algorithm: " + String.format("%.2f", baselineTime / 1000.0) + " seconds");
+                
+                // benchmark 4
+
+                // String path = "lit";
+                // Integer baselineCount = path.length();
+                // Integer methodCount = path.length();
+
+                logger.info(righthand.getPathCount());
+                logger.info(bfs.getPathCount());
+                double speedup = (double) righthand.getPathCount() / bfs.getPathCount();
+                logger.info("Improvement on the path as a speedup (BFS vs Righthand Rule): " + String.format("%.2f", speedup));
+                
                 // Make all the benchmarks happen here
+                // benchmark1: capture time between load operations
+                // benchmark 2: capture time in rightHandRule class and return it
+                // benchmark 3: capture time in BFS class and return it
+                // benchmark 4: make difference happen in baseline mode (MazeRunner class)
 
                 String yippee = config.getBaseline();
                 logger.info("**** Baseline: " + config.getBaseline());
@@ -43,31 +74,19 @@ public class MazeRunner {
                 Integer yippee2 = 0;
             }
 
-            if (config.getBaseline() != null) {
+            if (config.getBaseline() != null) { // baseline mode
                 System.out.println("EPIC");
-            } else if (config.getPathGuess() != null && config.getBaseline() == null) {
-                logger.info("Checking provided path");
+            } else if (config.getPathGuess() != null && config.getBaseline() == null) { // check path
                 PathChecker check = new PathChecker(mazeInput);
                 System.out.println(check.pathCheck(mazeInput, config.getPathGuess()));
             } else if (config.getPathGuess() == null && config.getBaseline() == null) {
-                // long benchmarkThree = System.currentTimeMillis(); // BENCHMARK 3
-                // System.out.println(benchmarkThree); // AHHHH TEST
-
-                if (config.getMethod().equals("bfs")) {
-                    // To use BFS algo: enter "-method bfs"
-                    logger.info("Running Breadth First Search algorithm");
+                if (config.getMethod().equals("bfs")) { // To use BFS algo: enter "-method bfs"
                     BreadthFirstSearch getPathBFS = new BreadthFirstSearch(mazeInput);
                     getPathBFS.breadthFirstSearch();
-                    // To use RightHandRule algo: enter "-method right"
-                } else if (config.getMethod().equals("righthand")) {
-                    logger.info("Running Righthand Rule algorithm");
+                } else if (config.getMethod().equals("righthand")) { // To use RightHandRule algo: enter "-method right"
                     RightHandRule getPath = new RightHandRule(mazeInput);
                     getPath.rightHandRule();
                 }
-                long methodTime = System.currentTimeMillis() - startTime;
-                logger.info("Time spent exploring the maze using the provided method: " + String.format("%.2f", methodTime / 1000.0) + " seconds");
-                // long benchmarkFour = System.currentTimeMillis();
-                // System.out.println(benchmarkFour);
             }
             
 

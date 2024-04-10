@@ -11,6 +11,7 @@ public class BreadthFirstSearch {
     private Coordinate endCond;
     private AdjacencyList list;
     private PathTranslator translator;
+    private Integer pathCount; 
 
     public BreadthFirstSearch(Maze maze) {
         this.translator = new PathTranslator();
@@ -71,6 +72,7 @@ public class BreadthFirstSearch {
                 heading.turnRight();
             }
         }
+        this.pathCount = result.length(); // gets the methodCount for benchmark 4
         translator.translateToFact(result);
         // System.out.println(result); // canonical version
         
@@ -99,5 +101,9 @@ public class BreadthFirstSearch {
     public Boolean directionRight(Coordinate current, Coordinate next, Compass heading) {
         Boolean check = directionForward(current, next, heading.getRight());
         return check;
+    }
+
+    public Integer getPathCount() {
+        return this.pathCount;
     }
 }

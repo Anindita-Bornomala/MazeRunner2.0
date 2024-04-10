@@ -13,6 +13,7 @@ public class AdjacencyList {
         this.mazeData = maze.getData();
         this.adjacencyList = new HashMap<>();
         createAdjacencyList();
+        // printAdjacencyList();
     }
 
     public List<Coordinate> getNeighbors(Coordinate coordinate) {

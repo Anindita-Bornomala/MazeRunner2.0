@@ -5,12 +5,14 @@ public class RightHandRule {
     private Graph graph;
     private Coordinate endCond;
     private PathTranslator translator;
+    private Integer pathCount;
 
     public RightHandRule(Maze maze) {
         this.translator = new PathTranslator();
         this.graph = new Graph(maze);
         this.heading = new Compass(Direction.EAST);
         this.endCond = maze.endCoord();
+        // this.pathCount = 0;
     }
 
     public void rightHandRule() {
@@ -41,6 +43,11 @@ public class RightHandRule {
                 // System.out.println("TESTING");
             }
         }
+        pathCount = canonical.length(); // this is for benchmark 4, aka the baselineCount!
         translator.translateToFact(canonical);
+    }
+
+    public Integer getPathCount() {
+        return this.pathCount;
     }
 }
