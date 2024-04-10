@@ -7,6 +7,11 @@
   * **Course Title**: Software Design I - Introduction to Software Development 
   * Term: *Level II - Winter 2024*
 
+#### CREDITS
+- Jelle Hellings: 2C03 Lectures (Data Structures & Algorithms)
+- Anindita Bornomala, Neha Bhatla, Ahmed Elzaria: A2 (2AA4)
+- Sebastien Mosser: 2AA4 Lectures (Intro to Software Design) 
+
 ## Business Logic Specification
 
 This program explores a maze, finding a path from an entry point to an exit one.
@@ -73,6 +78,33 @@ PATH NOT COMPUTED
 ```
 
 ### Delivered version
+**NEW!**
+New argument flags have been added, here is a rundown of all the availible flags:
+
+- `-i INPUT_MAZE`: Input the maze text file (mandatory)
+Example:
+```
+java -jar target/mazerunner.jar -i ./examples/straight.maz.txt
+``` 
+`-baseline INPUT_BASELINE` or `-b INPUT_BASELINE`: Enables "baseline mode", input "righthand" as the baseline to view benchmarks (optional)
+Example:
+```
+java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -baseline righthand
+``` 
+
+`-p INPUT_PATH_GUESS`: Allows user to enter a path guess, for factored version input path guess in between quotation marks ("enter_guess_here") to ensure accurate reading
+Examples:
+```
+java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p 4F
+java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p FFFF
+java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -p "3F 1R 1L 1F"
+```
+`-method INPUT_METHOD` or `-m INPUT_METHOD`: Select which algorithm method to use (RightHandRule or BFS), default option is RightHandRule. Use "righthand" or "bfs" as commands
+Example:
+```
+java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -method righthand
+java -jar target/mazerunner.jar -i ./examples/straight.maz.txt -method bfs
+``` 
 
 #### Command line arguments
 
