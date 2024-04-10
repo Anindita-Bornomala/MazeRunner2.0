@@ -30,14 +30,14 @@ public class Compass {
     public Direction getRight() { return goingRight.get(this.heading); }
 
     public void buildCompass() {
-        // Logic for checking/turning right
+        // Turning right
         this.goingRight = new EnumMap<>(Direction.class);
         this.goingRight.put(Direction.NORTH, Direction.EAST);
         this.goingRight.put(Direction.EAST, Direction.SOUTH);
         this.goingRight.put(Direction.SOUTH, Direction.WEST);
         this.goingRight.put(Direction.WEST, Direction.NORTH);
 
-        // Logic for checking/turning left
+        // Turning left
         this.goingLeft = new EnumMap<>(Direction.class);
         this.goingLeft.put(Direction.NORTH, Direction.WEST);
         this.goingLeft.put(Direction.WEST, Direction.SOUTH);
@@ -45,5 +45,3 @@ public class Compass {
         this.goingLeft.put(Direction.EAST, Direction.NORTH);
     }
 }
-
-// After main code is finished, remove unused methods
