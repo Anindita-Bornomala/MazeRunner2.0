@@ -1,0 +1,20 @@
+@startuml umlDiagram
+
+class AdjacencyList
+class BFSQueue
+class BreadthFirstSearch
+class Compass
+class Configuration
+class Coordinate
+enum Direction
+class Graph
+class Main
+class Maze
+class MazeRunner
+class PathChecker
+class PathTranslator
+
+
+
+
+@enduml

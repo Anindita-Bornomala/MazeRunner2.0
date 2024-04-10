@@ -16,7 +16,7 @@ public class GraphTest {
     private Graph testGraph;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         this.testMaze = new Maze("./examples/straight.maz.txt");
         this.testGraph = new Graph(testMaze);
     }
