@@ -20,7 +20,7 @@ public class BreadthFirstSearch {
         this.list = new AdjacencyList(maze);
     }
 
-    public void breadthFirstSearch() {
+    public String breadthFirstSearch() {
         BFSQueue queue = new BFSQueue();
         queue.enqueue(startCond);
         Map<Coordinate, Coordinate> parent = new HashMap<>();
@@ -31,7 +31,7 @@ public class BreadthFirstSearch {
 
             if (currentCoord.equals(endCond)) {
                 List<Coordinate> path = reconstructPath(parent, startCond, endCond);
-                coordsToPath(path);
+                return coordsToPath(path);
             }
             
             for (Coordinate neighbor : list.getNeighbors(currentCoord)) {
@@ -41,6 +41,7 @@ public class BreadthFirstSearch {
                 }
             }
         }
+        return null;
     }
 
     private List<Coordinate> reconstructPath(Map<Coordinate, Coordinate> parent, Coordinate start, Coordinate end) {
@@ -54,7 +55,7 @@ public class BreadthFirstSearch {
         return path;
     }
 
-    public void coordsToPath(List<Coordinate> path) {
+    public String coordsToPath(List<Coordinate> path) {
         String result = "";
         Compass heading = new Compass(Direction.EAST);
         
@@ -73,7 +74,7 @@ public class BreadthFirstSearch {
             }
         }
         this.pathCount = result.length(); // gets the methodCount for benchmark 4
-        translator.translateToFact(result);
+        return translator.translateToFact(result);
         // System.out.println(result); // canonical version
         
     }
