@@ -28,6 +28,4 @@ class CoordinateTest {
         assertNotEquals(coord1.hashCode(), coord3.hashCode());
         assertNotEquals(coord2.hashCode(), coord3.hashCode());
     }
-
-    // Add more tests as needed
-}
+ }

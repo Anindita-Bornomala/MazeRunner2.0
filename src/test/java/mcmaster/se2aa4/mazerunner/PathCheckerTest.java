@@ -18,16 +18,14 @@ class PathCheckerTest {
 
     @Test
     public void testPathCheck() {
-        // Test a correct path
+        // Correct path
         String correctPath = "FFFF";
         String resultCorrect = testPathChecker.pathCheck(testMaze, correctPath);
         assertEquals("Correct path!", resultCorrect);
 
-        // Test an incorrect path
+        // Incorrect path
         String incorrectPath = "FFFRF";
         String resultIncorrect = testPathChecker.pathCheck(testMaze, incorrectPath);
         assertEquals("Incorrect path!", resultIncorrect);
-
-        // Add more test cases for different paths and maze configurations
     }
 }
