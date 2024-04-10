@@ -37,10 +37,10 @@ public class MazeRunner {
 
             if (config.getBaseline() != null) {
                 double speedup = (double) righthand.getPathCount() / bfs.getPathCount();
-                logger.info("Time spent loading the maze: " + String.format("%.2f", loadTime / 1.0) + " milliseconds"); // benchmark 1
-                logger.info("Time spent exploring the maze (BFS): " + String.format("%.2f", methodTime / 1.0) + " milliseconds"); // benchmark 2
-                logger.info("Time spent exploring the maze (righthand): " + String.format("%.2f", baselineTime / 1.0) + " milliseconds"); // benchmark 3
-                logger.info("Improvement on the path as a speedup (BFS vs Righthand Rule): " + String.format("%.2f", speedup)); // benchmark 4 (speedup)
+                logger.info("Time spent loading the maze: " + String.format("%.2g", (double) loadTime) + " milliseconds"); // benchmark 1
+                logger.info("Time spent exploring the maze (BFS): " + String.format("%.2g", (double) methodTime) + " milliseconds"); // benchmark 2
+                logger.info("Time spent exploring the maze (righthand): " + String.format("%.2g", (double) baselineTime) + " milliseconds"); // benchmark 3
+                logger.info("Improvement on the path as a speedup (BFS vs Righthand Rule): " + String.format("%.2g", (double) speedup)); // benchmark 4 (speedup)
             } else {
                 if (config.getPathGuess() != null) {
                     PathChecker check = new PathChecker(mazeInput);
