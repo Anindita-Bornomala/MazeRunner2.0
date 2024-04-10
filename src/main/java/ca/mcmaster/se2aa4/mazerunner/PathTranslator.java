@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class PathTranslator {
 
-    public PathTranslator() {}
+    public PathTranslator() {} // MAYBE DELETE IDK
 
     public String translateToFact(String canonical) {
         String result = "";
@@ -17,7 +17,6 @@ public class PathTranslator {
             }
         }
         return result;
-        // System.out.println(result);
     }
 
     public String translateToCanon(String factorized) {

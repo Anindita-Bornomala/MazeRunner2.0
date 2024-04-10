@@ -11,22 +11,21 @@ public class PathChecker {
 
     public String pathCheck(Maze maze, String pathGuess) {
         Graph graph = new Graph(maze);
+        Coordinate endCond = maze.endCoord();
+        Coordinate pointer = graph.getCurrent();
+        Direction heading = compass.getHeading();
+        Coordinate nextPosition;
+
         if (pathGuess.charAt(0) == 'F' || pathGuess.charAt(0) == 'R' || pathGuess.charAt(0) == 'L') {
             pathGuess = pathGuess.replaceAll(" ", "");
         } else {
             pathGuess = translator.translateToCanon(pathGuess);
         }
 
-        Coordinate endCond = maze.endCoord();
-        Coordinate pointer = graph.getCurrent();
-        Direction heading = compass.getHeading();
-        Coordinate nextPosition;
-
         for (char element : pathGuess.toCharArray()) {
             if (element == 'F') {
                 nextPosition = graph.nextStep(heading);
                 pointer = graph.updateCurrent(nextPosition);
-                // System.out.println(nextPosition);
             } else if (element == 'R') {
                 heading = compass.turnRight();
             } else if (element == 'L') {

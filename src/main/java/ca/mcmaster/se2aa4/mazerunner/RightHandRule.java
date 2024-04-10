@@ -12,7 +12,6 @@ public class RightHandRule {
         this.graph = new Graph(maze);
         this.heading = new Compass(Direction.EAST);
         this.endCond = maze.endCoord();
-        // this.pathCount = 0;
     }
 
     public String rightHandRule() {

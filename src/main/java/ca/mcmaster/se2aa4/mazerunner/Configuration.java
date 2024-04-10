@@ -32,8 +32,6 @@ public class Configuration {
         String inputPathGuess = cmd.getOptionValue("p");
         String inputMethod = cmd.getOptionValue("method");
         String inputBaseline = cmd.getOptionValue("baseline");
-        // Integer inputBaseline = Integer.parseInt(inputBaselineString);
-
         return new Configuration(inputFilePath, inputPathGuess, inputMethod, inputBaseline);
     }
 

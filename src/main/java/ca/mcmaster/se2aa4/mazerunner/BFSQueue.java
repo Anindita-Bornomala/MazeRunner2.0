@@ -3,7 +3,6 @@ package ca.mcmaster.se2aa4.mazerunner;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
 public class BFSQueue {
     public Queue<Coordinate> queue;
 

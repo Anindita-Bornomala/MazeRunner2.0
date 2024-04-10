@@ -20,7 +20,6 @@ public class MazeRunner {
             logger.info("**** Reading the method: " + config.getMethod());
             logger.info("**** Reading for baseline: " + config.getBaseline());
             Maze mazeInput = new Maze(config.getInputFile());
-            // mazeInput.printMaze(); // TEST
             Long loadTime = System.currentTimeMillis() - startTime;
             System.out.println();
 

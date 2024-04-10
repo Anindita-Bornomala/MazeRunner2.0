@@ -14,5 +14,3 @@ public interface Main {
         }
     }    
 }
-
-// Main is fine, we don't need to change it.

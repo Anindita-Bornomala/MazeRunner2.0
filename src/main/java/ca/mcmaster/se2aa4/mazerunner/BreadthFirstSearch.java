@@ -33,7 +33,6 @@ public class BreadthFirstSearch {
                 List<Coordinate> path = reconstructPath(parent, startCond, endCond);
                 return coordsToPath(path);
             }
-            
             for (Coordinate neighbor : list.getNeighbors(currentCoord)) {
                 if (!parent.containsKey(neighbor)) {
                     queue.enqueue(neighbor);
@@ -56,8 +55,8 @@ public class BreadthFirstSearch {
     }
 
     public String coordsToPath(List<Coordinate> path) {
-        String result = "";
         Compass heading = new Compass(Direction.EAST);
+        String result = "";
         
         for (Integer i = 0; i < path.size() - 1; i++) {
             Coordinate current = path.get(i);
@@ -75,8 +74,6 @@ public class BreadthFirstSearch {
         }
         this.pathCount = result.length(); // gets the methodCount for benchmark 4
         return translator.translateToFact(result);
-        // System.out.println(result); // canonical version
-        
     }
 
     public boolean directionForward(Coordinate current, Coordinate next, Direction heading) {
